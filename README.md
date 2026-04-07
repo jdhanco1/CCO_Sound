@@ -1,6 +1,6 @@
 # Community Church Oxford — Website Rebuild
 
-A modern church website built with **React 19** + **Tailwind CSS 4** (frontend) and **Strapi v5** (headless CMS), modeled after [communityoxford.com](https://communityoxford.com).
+A modern church website built with **React 19** + **Tailwind CSS 4** (frontend) and **Contentful** (headless CMS), modeled after [communityoxford.com](https://communityoxford.com).
 
 ## Project Structure
 
@@ -17,21 +17,15 @@ community-church-oxford/
 │   │   │   ├── sermons/     SermonCard
 │   │   │   └── blog/        BlogCard
 │   │   ├── pages/         Home, Mission, Leadership, Connect, Sermons, Blog, Events, Contact
-│   │   ├── hooks/         useStrapi (generic data-fetching hook)
-│   │   ├── lib/           api.js (Strapi client), i18n.js
+│   │   ├── hooks/         useContent (generic data-fetching hook)
+│   │   ├── lib/           api.js (Contentful client), contentful.js, i18n.js
 │   │   ├── i18n/          en.json, es.json
 │   │   └── assets/
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
 │
-├── cms/               ← Strapi CMS
-│   ├── content-types/   JSON schemas (reference for Content-Type Builder)
-│   ├── components/      Reusable component schemas (shared, mission)
-│   ├── seed.js          Data seeder script
-│   ├── README.md        Setup guide
-│   └── .env.example
-│
+├── CONTENTFUL_SETUP.md  ← CMS setup guide
 └── .gitignore
 ```
 
@@ -50,7 +44,7 @@ community-church-oxford/
 
 ## Features
 
-- **CMS-driven content** — church admins manage everything in Strapi's visual admin panel
+- **CMS-driven content** — church admins manage everything in Contentful's visual editor
 - **Spanish language toggle** — full EN/ES i18n (Javi Sanchez runs Spanish Ministry)
 - **Sermon archive** — video (YouTube/Vimeo) + audio player, filterable by series/speaker
 - **Blog/Devotionals** — rich text posts with author attribution
@@ -60,22 +54,16 @@ community-church-oxford/
 
 ## Quick Start
 
-### 1. CMS (Strapi)
+### 1. CMS (Contentful)
 
-```bash
-cd cms
-npx create-strapi@latest . --quickstart
-# Create content types matching the JSON schemas in content-types/
-# Then seed data:
-STRAPI_TOKEN=your-token node seed.js
-```
+See [CONTENTFUL_SETUP.md](CONTENTFUL_SETUP.md) for full instructions on creating your Contentful space, content models, and adding content.
 
 ### 2. Frontend (React)
 
 ```bash
 cd frontend
 cp .env.example .env
-# Set VITE_STRAPI_URL and VITE_STRAPI_TOKEN
+# Set VITE_CONTENTFUL_SPACE_ID and VITE_CONTENTFUL_ACCESS_TOKEN
 npm install
 npm run dev
 ```
@@ -94,5 +82,5 @@ Open **http://localhost:3000**
 ## Deployment
 
 - **Frontend**: Vercel or Netlify (static build via `npm run build`)
-- **Strapi CMS**: Railway, Render, DigitalOcean, or self-hosted VPS
-- Use PostgreSQL + Cloudinary/S3 for production media
+- **CMS**: Contentful (hosted — no server needed)
+- Content is fetched at runtime via the Contentful Delivery API
