@@ -1,0 +1,46 @@
+{
+    "kind": "singleType",
+    "collectionName": "mission_page",
+    "info": {
+        "singularName": "mission-page",
+        "pluralName": "mission-pages",
+        "displayName": "Mission Page",
+        "description": "Seek, Shape, Send — mission statement and scripture sections"
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "introText": {
+            "type": "text",
+            "required": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "sections": {
+            "type": "component",
+            "repeatable": true,
+            "component": "mission.mission-section"
+        },
+        "essentialsCta": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "essentialsFormUrl": {
+            "type": "string",
+            "default": "https://communityoxford.ccbchurch.com/form_response.php?id=23"
+        }
+    }
+}
