@@ -29,7 +29,7 @@
 
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "Dockerfile"
+dockerfilePath = "cms/Dockerfile"
 
 [deploy]
 healthcheckPath = "/api/health"
