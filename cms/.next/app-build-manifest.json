@@ -14,7 +14,8 @@
     "/(payload)/admin/[[...segments]]/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(payload)/admin/[[...segments]]/not-found.js"
+      "static/chunks/app/(payload)/admin/[[...segments]]/not-found.js",
+      "static/css/app/(payload)/admin/[[...segments]]/not-found.css"
     ],
     "/(payload)/admin/[[...segments]]/page": [
       "static/chunks/webpack.js",
