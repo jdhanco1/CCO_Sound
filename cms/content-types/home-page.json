@@ -1,0 +1,54 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_page",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home Page",
+    "description": "Homepage content — hero, about section, quick actions"
+  },
+  "pluginOptions": {
+    "i18n": { "localized": true }
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "heroTagline": {
+      "type": "string",
+      "default": "Seek · Shape · Send",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "heroSubtitle": {
+      "type": "string",
+      "default": "A Christ-centered church in Oxford, Mississippi",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "heroBackgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "aboutHeading": {
+      "type": "string",
+      "default": "Welcome to Community",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "aboutText": {
+      "type": "text",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "serviceTime": {
+      "type": "string",
+      "default": "9:45 AM"
+    },
+    "serviceLocation": {
+      "type": "string",
+      "default": "Lafayette High School Gym · Oxford, MS",
+      "pluginOptions": { "i18n": { "localized": true } }
+    },
+    "announcements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.announcement"
+    }
+  }
+}

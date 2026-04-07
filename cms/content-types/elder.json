@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "elders",
+  "info": {
+    "singularName": "elder",
+    "pluralName": "elders",
+    "displayName": "Elder",
+    "description": "Church elders"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "title": { "type": "string", "default": "Elder" },
+    "photo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "order": { "type": "integer", "default": 0 }
+  }
+}

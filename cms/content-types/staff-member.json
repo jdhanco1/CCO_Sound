@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "staff_members",
+  "info": {
+    "singularName": "staff-member",
+    "pluralName": "staff-members",
+    "displayName": "Staff Member",
+    "description": "Church staff members"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "title": { "type": "string", "required": true },
+    "bio": { "type": "text" },
+    "photo": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "email": { "type": "email" },
+    "order": { "type": "integer", "default": 0 }
+  }
+}
