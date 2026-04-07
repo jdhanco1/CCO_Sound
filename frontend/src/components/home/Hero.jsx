@@ -6,20 +6,20 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-gradient relative flex min-h-[85vh] items-center justify-center overflow-hidden"
+      className="relative flex min-h-[50vh] items-center justify-center overflow-hidden bg-brand-dark"
     >
-      {/* Background image */}
+      {/* Background image with overlay */}
       <img
         src="/back.png"
         alt="Background"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-contain opacity-40"
       />
 
       {/* Decorative circles */}
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/5" />
       <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/10" />
 
-      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
+      <div className="relative z-10 mx-auto max-w-3xl px-4 text-center">
         <p className="animate-fade-in-up mb-4 text-sm font-bold uppercase tracking-[0.3em] text-accent-light">
          
         </p>
