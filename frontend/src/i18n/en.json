@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "mission": "Mission",
+    "leadership": "Leadership",
+    "connect": "Connect",
+    "sermons": "Sermons",
+    "blog": "Blog",
+    "events": "Events",
+    "contact": "Contact Us",
+    "give": "Give"
+  },
+  "hero": {
+    "tagline": "",
+    "subtitle": "",
+    "cta_visit": "Plan Your Visit",
+    "cta_watch": "Watch Online"
+  },
+  "home": {
+    "service_label": "Sunday Mornings",
+    "service_time": "9:45 AM",
+    "service_location": "Lafayette High School Gym · Oxford, MS",
+    "quick_give": "Online Giving",
+    "quick_ministries": "Ministry Areas",
+    "quick_ccb": "Church Community Builder",
+    "section_about": "Welcome to Community",
+    "section_about_text": "At Community Church Oxford, our mission is to Seek, Shape, and Send. We are a family of Christ-followers committed to sharing the Gospel in Oxford, MS and beyond."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "intro": "The phrase \"Seek, Shape, Send\" is a clear, concise way for us to state our mission. We believe these three words are not only a reminder of what God has done for us, but also great markers and goals for how we are to live our lives.",
+    "god_seeks": "God Seeks Us",
+    "god_seeks_text": "All throughout scripture we see God seeking us; in the Garden after Adam and Eve sinned, and more specifically, Jesus Christ coming to earth.",
+    "god_shapes": "God Shapes Us",
+    "god_shapes_text": "When we choose to follow Christ we are shaped by him. As Paul says in 2 Corinthians we become \"a new creation.\" We are like clay in the hands of the Father as he molds and shapes us into his disciples.",
+    "god_sends": "God Sends Us",
+    "god_sends_text": "God sends us out into the world to proclaim and preach the Gospel, and we should respond with the same heart as Isaiah saying, \"Here I am, send me\".",
+    "seek_others": "God Calls Us to Seek Others",
+    "seek_others_text": "As disciples of Christ, we have received the Holy Spirit and we are to spread the Gospel both near and far as we see in the book of Acts and the Great Commission.",
+    "shape_others": "God Calls Us to Shape Others",
+    "shape_others_text": "As we seek others we are to shape, or disciple them. We see this modeled in Paul and Timothy's relationship. Hebrews 10:24-25 tells us to encourage and stir up love and good works in each other.",
+    "send_others": "God Calls Us to Send Others",
+    "send_others_text": "Just as God sent us, we are to send others. We are to send out disciples on mission to fulfill the Great Commission and answer the call of Paul in Romans 10:14.",
+    "essentials_cta": "Want to know more? Register for our next Essentials Class."
+  },
+  "leadership": {
+    "title": "Leadership",
+    "staff_heading": "Staff",
+    "elders_heading": "Elders"
+  },
+  "connect": {
+    "title": "Get Connected",
+    "intro": "Connecting with people in large groups can be somewhat difficult. Community Groups are designed for you to connect with other people on a more personal level and do life together.",
+    "questions": "Still have questions about our ministries?"
+  },
+  "sermons": {
+    "title": "Sermons",
+    "watch": "Watch",
+    "listen": "Listen",
+    "filter_series": "Filter by Series",
+    "filter_speaker": "Filter by Speaker"
+  },
+  "blog": {
+    "title": "Blog & Devotionals",
+    "read_more": "Read More"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "register": "Register",
+    "no_events": "No upcoming events at this time."
+  },
+  "contact": {
+    "action_request": "Send Us a Message",
+    "title": "Contact Us",
+    "sunday_heading": "Sunday Mornings",
+    "sunday_time": "Sundays | 9:45 AM",
+    "sunday_location": "Lafayette High School Gym\nOxford, MS 38655",
+    "office_heading": "Church Offices",
+    "office_hours": "Monday – Thursday | 10:00 AM – 5:00 PM",
+    "office_phone": "662.380.5014",
+    "office_address": "68 Highway 334\nOxford, MS 38655",
+    "directions": "Get Directions",
+    "form_name": "Your Name",
+    "form_email": "Your Email",
+    "form_message": "Message",
+    "form_submit": "Send Message",
+    "form_success": "Thank you! We'll be in touch soon."
+  },
+  "footer": {
+    "copyright": "© {{year}} Community Church Oxford"
+  }
+}

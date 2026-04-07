@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "mission": "Misión",
+    "leadership": "Liderazgo",
+    "connect": "Conéctate",
+    "sermons": "Sermones",
+    "blog": "Blog",
+    "events": "Eventos",
+    "contact": "Contáctenos",
+    "give": "Dar"
+  },
+  "hero": {
+    "tagline": "",
+    "subtitle": "",
+    "cta_visit": "Planifica tu Visita",
+    "cta_watch": "Ver en Línea"
+  },
+  "home": {
+    "service_label": "Domingos por la Mañana",
+    "service_time": "9:45 AM",
+    "service_location": "Lafayette High School Gym · Oxford, MS",
+    "quick_give": "Dar en Línea",
+    "quick_ministries": "Áreas de Ministerio",
+    "quick_ccb": "Church Community Builder",
+    "section_about": "Bienvenido a Community",
+    "section_about_text": "En Community Church Oxford, nuestra misión es Buscar, Formar y Enviar. Somos una familia de seguidores de Cristo comprometidos a compartir el Evangelio en Oxford, MS y más allá."
+  },
+  "mission": {
+    "title": "Nuestra Misión",
+    "intro": "La frase \"Buscar, Formar, Enviar\" es una forma clara y concisa de declarar nuestra misión. Creemos que estas tres palabras no solo son un recordatorio de lo que Dios ha hecho por nosotros, sino también grandes marcadores y metas de cómo debemos vivir nuestras vidas.",
+    "god_seeks": "Dios nos Busca",
+    "god_seeks_text": "A lo largo de las Escrituras vemos a Dios buscándonos; en el Jardín después de que Adán y Eva pecaron, y más específicamente, Jesucristo viniendo a la tierra.",
+    "god_shapes": "Dios nos Forma",
+    "god_shapes_text": "Cuando elegimos seguir a Cristo, somos formados por él. Como dice Pablo en 2 Corintios, nos convertimos en \"una nueva creación\". Somos como arcilla en las manos del Padre mientras nos moldea y forma en sus discípulos.",
+    "god_sends": "Dios nos Envía",
+    "god_sends_text": "Dios nos envía al mundo a proclamar y predicar el Evangelio, y debemos responder con el mismo corazón que Isaías diciendo, \"Aquí estoy, envíame\".",
+    "seek_others": "Dios nos Llama a Buscar a Otros",
+    "seek_others_text": "Como discípulos de Cristo, hemos recibido el Espíritu Santo y debemos difundir el Evangelio tanto cerca como lejos, como vemos en el libro de Hechos y la Gran Comisión.",
+    "shape_others": "Dios nos Llama a Formar a Otros",
+    "shape_others_text": "Al buscar a otros, debemos formarlos o discipularlos. Vemos esto modelado en la relación de Pablo y Timoteo. Hebreos 10:24-25 nos dice que nos animemos y estimulemos al amor y las buenas obras.",
+    "send_others": "Dios nos Llama a Enviar a Otros",
+    "send_others_text": "Así como Dios nos envió, debemos enviar a otros. Debemos enviar discípulos en misión para cumplir la Gran Comisión y responder al llamado de Pablo en Romanos 10:14.",
+    "essentials_cta": "¿Quieres saber más? Regístrate para nuestra próxima Clase Esencial."
+  },
+  "leadership": {
+    "title": "Liderazgo",
+    "staff_heading": "Personal",
+    "elders_heading": "Ancianos"
+  },
+  "connect": {
+    "title": "Conéctate",
+    "intro": "Conectar con personas en grupos grandes puede ser algo difícil. Los Grupos Comunitarios están diseñados para que te conectes con otras personas a un nivel más personal y hagan vida juntos.",
+    "questions": "¿Aún tienes preguntas sobre nuestros ministerios?"
+  },
+  "sermons": {
+    "title": "Sermones",
+    "watch": "Ver",
+    "listen": "Escuchar",
+    "filter_series": "Filtrar por Serie",
+    "filter_speaker": "Filtrar por Predicador"
+  },
+  "blog": {
+    "title": "Blog y Devocionales",
+    "read_more": "Leer Más"
+  },
+  "events": {
+    "title": "Próximos Eventos",
+    "register": "Registrarse",
+    "no_events": "No hay eventos próximos en este momento."
+  },
+  "contact": {
+    "action_request": "Envíanos un Mensaje",
+    "title": "Contáctenos",
+    "sunday_heading": "Domingos por la Mañana",
+    "sunday_time": "Domingos | 9:45 AM",
+    "sunday_location": "Lafayette High School Gym\nOxford, MS 38655",
+    "office_heading": "Oficinas de la Iglesia",
+    "office_hours": "Lunes – Jueves | 10:00 AM – 5:00 PM",
+    "office_phone": "662.380.5014",
+    "office_address": "68 Highway 334\nOxford, MS 38655",
+    "directions": "Obtener Direcciones",
+    "form_name": "Tu Nombre",
+    "form_email": "Tu Correo",
+    "form_message": "Mensaje",
+    "form_submit": "Enviar Mensaje",
+    "form_success": "¡Gracias! Nos pondremos en contacto pronto."
+  },
+  "footer": {
+    "copyright": "© {{year}} Community Church Oxford"
+  }
+}
