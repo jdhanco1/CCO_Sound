@@ -1,6 +1,6 @@
 # Community Church Oxford — Website Rebuild
 
-A modern church website built with **React 19** + **Tailwind CSS 4** (frontend) and **Contentful** (headless CMS), modeled after [communityoxford.com](https://communityoxford.com).
+A modern church website built with **React 19** + **Tailwind CSS 4** (frontend) and **Payload CMS** (self-hosted headless CMS with built-in admin panel), modeled after [communityoxford.com](https://communityoxford.com).
 
 ## Project Structure
 
@@ -18,14 +18,24 @@ community-church-oxford/
 │   │   │   └── blog/        BlogCard
 │   │   ├── pages/         Home, Mission, Leadership, Connect, Sermons, Blog, Events, Contact
 │   │   ├── hooks/         useContent (generic data-fetching hook)
-│   │   ├── lib/           api.js (Contentful client), contentful.js, i18n.js
+│   │   ├── lib/           api.js (Payload REST client), i18n.js
 │   │   ├── i18n/          en.json, es.json
 │   │   └── assets/
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
 │
-├── CONTENTFUL_SETUP.md  ← CMS setup guide
+├── cms/               ← Payload CMS (API + Admin Panel)
+│   ├── src/
+│   │   ├── server.ts
+│   │   ├── payload.config.ts
+│   │   ├── collections/    StaffMembers, Elders, Ministries, Sermons, etc.
+│   │   └── globals/        HomePage, MissionPage
+│   ├── Dockerfile
+│   └── package.json
+│
+├── docker-compose.yml
+├── railway.toml
 └── .gitignore
 ```
 
@@ -44,7 +54,7 @@ community-church-oxford/
 
 ## Features
 
-- **CMS-driven content** — church admins manage everything in Contentful's visual editor
+- **CMS-driven content** — church admins manage everything in Payload's built-in admin panel at `/admin`
 - **Spanish language toggle** — full EN/ES i18n (Javi Sanchez runs Spanish Ministry)
 - **Sermon archive** — video (YouTube/Vimeo) + audio player, filterable by series/speaker
 - **Blog/Devotionals** — rich text posts with author attribution
@@ -54,21 +64,42 @@ community-church-oxford/
 
 ## Quick Start
 
-### 1. CMS (Contentful)
-
-See [CONTENTFUL_SETUP.md](CONTENTFUL_SETUP.md) for full instructions on creating your Contentful space, content models, and adding content.
-
-### 2. Frontend (React)
+### Option A: Docker (recommended)
 
 ```bash
-cd frontend
+docker compose up
+```
+
+This starts Postgres, Payload CMS, and the frontend. Then:
+- **Frontend**: http://localhost:3000
+- **Admin panel**: http://localhost:3001/admin (create your first admin user on first visit)
+
+### Option B: Manual
+
+#### 1. Database
+Start a PostgreSQL instance and note the connection URL.
+
+#### 2. CMS (Payload)
+```bash
+cd cms
 cp .env.example .env
-# Set VITE_CONTENTFUL_SPACE_ID and VITE_CONTENTFUL_ACCESS_TOKEN
+# Set DATABASE_URL and PAYLOAD_SECRET
 npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**
+Visit http://localhost:3001/admin to create your admin account and start adding content.
+
+#### 3. Frontend (React)
+```bash
+cd frontend
+cp .env.example .env
+# Set VITE_CMS_URL=http://localhost:3001
+npm install
+npm run dev
+```
+
+Open http://localhost:3000
 
 ## External Services (Preserved)
 
@@ -79,8 +110,12 @@ Open **http://localhost:3000**
 | Facebook | Social | facebook.com/communityoxford |
 | Twitter | Social | twitter.com/CommunityOxford |
 
-## Deployment
+## Deployment (Railway)
 
-- **Frontend**: Vercel or Netlify (static build via `npm run build`)
-- **CMS**: Contentful (hosted — no server needed)
-- Content is fetched at runtime via the Contentful Delivery API
+See `railway.toml` for configuration. You need three services on Railway:
+
+1. **Postgres** — Add the Railway Postgres plugin
+2. **CMS** — Payload CMS (root dir: `cms`, port: `3001`)
+3. **Frontend** — React/nginx (root dir: `frontend`, port: `80`)
+
+Set `DATABASE_URL` on the CMS service using Railway's `${{Postgres.DATABASE_URL}}` variable reference.
