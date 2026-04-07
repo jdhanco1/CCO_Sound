@@ -7,8 +7,14 @@ export default function Hero() {
   return (
     <section
       className="hero-gradient relative flex min-h-[85vh] items-center justify-center overflow-hidden"
-      style={{ backgroundImage: "url('/back.png')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
     >
+      {/* Background image */}
+      <img
+        src="/back.png"
+        alt="Background"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
       {/* Decorative circles */}
       <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/5" />
       <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/10" />
