@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { STRAPI_URL } from '../../lib/api';
 
 export default function BlogCard({ slug, title, excerpt, coverImage, author, publishedAt }) {
   const { t } = useTranslation();
-  const imgSrc = coverImage?.url ? `${STRAPI_URL}${coverImage.url}` : null;
+  const imgSrc = coverImage?.url || null;
   const formattedDate = new Date(publishedAt).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',

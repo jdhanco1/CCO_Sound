@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "ES2020",
     "module": "commonjs",
-    "lib": ["ES2021"],
-    "moduleResolution": "node",
+    "lib": ["ES2020"],
+    "outDir": "./dist",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "outDir": "dist",
-    "rootDir": ".",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "payload/generated-types": ["./src/payload-types.ts"]
+    }
   },
-  "include": ["src/**/*.ts", "config/**/*.ts", "src/**/*.json"],
-  "exclude": ["node_modules", "dist", ".cache", ".tmp"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

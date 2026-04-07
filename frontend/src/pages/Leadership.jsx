@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import StaffCard from '../components/leadership/StaffCard';
-import useStrapi from '../hooks/useStrapi';
+import useContent from '../hooks/useContent';
 import { getStaff, getElders } from '../lib/api';
 import Button from '../components/common/Button';
 
@@ -31,8 +31,8 @@ const fallbackElders = [
 
 export default function Leadership() {
   const { t } = useTranslation();
-  const { data: staff } = useStrapi(getStaff);
-  const { data: elders } = useStrapi(getElders);
+  const { data: staff } = useContent(getStaff);
+  const { data: elders } = useContent(getElders);
 
   const staffList = staff || fallbackStaff;
   const elderList = elders || fallbackElders;

@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import BlogCard from '../components/blog/BlogCard';
-import useStrapi from '../hooks/useStrapi';
+import useContent from '../hooks/useContent';
 import { getBlogPosts } from '../lib/api';
 
 export default function Blog() {
   const { t, i18n } = useTranslation();
   const [page, setPage] = useState(1);
-  const { data, loading } = useStrapi(() => getBlogPosts(page, 9, i18n.language), [page, i18n.language]);
+  const { data, loading } = useContent(() => getBlogPosts(page, 9, i18n.language), [page, i18n.language]);
 
   const posts = data?.items || [];
   const meta = data?.meta;
@@ -35,7 +35,7 @@ export default function Blog() {
                 Blog posts & devotionals will appear here once added in the CMS.
               </p>
               <p className="mt-2 text-sm text-gray-400">
-                Pastors and staff can publish posts with rich text, images, and author info via Strapi.
+                Pastors and staff can publish posts with rich text, images, and author info via the CMS.
               </p>
             </div>
           ) : (

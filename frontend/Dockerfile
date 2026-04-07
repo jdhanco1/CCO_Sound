@@ -18,7 +18,7 @@ FROM base AS dev
 
 ENV NODE_ENV=development
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
@@ -38,7 +38,7 @@ FROM base AS build
 
 ENV NODE_ENV=production
 
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 COPY . .
 

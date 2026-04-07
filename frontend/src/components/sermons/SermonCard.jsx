@@ -1,11 +1,10 @@
 import ReactPlayer from 'react-player';
 import { useTranslation } from 'react-i18next';
 import { HiPlay } from 'react-icons/hi';
-import { STRAPI_URL } from '../../lib/api';
 
 export default function SermonCard({ title, speaker, date, videoUrl, audioUrl, thumbnail, series }) {
   const { t } = useTranslation();
-  const thumbSrc = thumbnail?.url ? `${STRAPI_URL}${thumbnail.url}` : null;
+  const thumbSrc = thumbnail?.url || null;
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',

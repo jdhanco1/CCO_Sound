@@ -1,9 +1,6 @@
-import { STRAPI_URL } from '../../lib/api';
-
 export default function StaffCard({ name, title, photo }) {
   const imgSrc = photo?.url
-    ? `${STRAPI_URL}${photo.url}`
-    : `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e3a5f&color=fff&size=300`;
+    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e3a5f&color=fff&size=300`;
 
   return (
     <div className="group text-center">

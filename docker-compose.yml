@@ -7,53 +7,41 @@ services:
     container_name: cco-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_DB: community_church
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: strapi_dev_password
+      POSTGRES_DB: cco_cms
+      POSTGRES_USER: payload
+      POSTGRES_PASSWORD: payload_dev_password
     volumes:
       - pg_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U strapi -d community_church"]
+      test: ["CMD-SHELL", "pg_isready -U payload -d cco_cms"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # ── Strapi CMS ─────────────────────────────────────────
-  # strapi:
-  #   build:
-  #     context: ./cms
-  #     dockerfile: Dockerfile
-  #     target: dev
-  #   container_name: cco-strapi
-  #   restart: unless-stopped
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #   environment:
-  #     HOST: 0.0.0.0
-  #     PORT: 1337
-  #     APP_KEYS: key1-change-me,key2-change-me,key3-change-me,key4-change-me
-  #     API_TOKEN_SALT: api-token-salt-change-me
-  #     ADMIN_JWT_SECRET: admin-jwt-secret-change-me
-  #     TRANSFER_TOKEN_SALT: transfer-token-salt-change-me
-  #     JWT_SECRET: jwt-secret-change-me
-  #     # PostgreSQL connection
-  #     DATABASE_CLIENT: postgres
-  #     DATABASE_HOST: postgres
-  #     DATABASE_PORT: 5432
-  #     DATABASE_NAME: community_church
-  #     DATABASE_USERNAME: strapi
-  #     DATABASE_PASSWORD: strapi_dev_password
-  #     DATABASE_SSL: "false"
-  #     NODE_ENV: development
-  #   volumes:
-  #     - ./cms:/opt/app
-  #     - cms_node_modules:/opt/app/node_modules
-  #     - strapi_uploads:/opt/app/public/uploads
-  #   ports:
-  #     - "1337:1337"
+  # ── Payload CMS ────────────────────────────────────────
+  cms:
+    build:
+      context: ./cms
+      dockerfile: Dockerfile
+      target: dev
+    container_name: cco-cms
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://payload:payload_dev_password@postgres:5432/cco_cms
+      PAYLOAD_SECRET: change-me-to-a-random-secret
+      CORS_ORIGINS: http://localhost:3000,http://localhost:5173
+      PORT: 3001
+    volumes:
+      - ./cms:/app
+      - cms_node_modules:/app/node_modules
+      - cms_media:/app/media
+    ports:
+      - "3001:3001"
 
   # ── React Frontend ─────────────────────────────────────
   frontend:
@@ -63,11 +51,10 @@ services:
       target: dev
     container_name: cco-frontend
     restart: unless-stopped
-    # depends_on:
-    #   - strapi
+    depends_on:
+      - cms
     environment:
-      VITE_STRAPI_URL: http://localhost:1337
-      VITE_STRAPI_TOKEN: ""
+      VITE_CMS_URL: http://localhost:3001
     volumes:
       - ./frontend:/app
       - frontend_node_modules:/app/node_modules
@@ -77,5 +64,5 @@ services:
 volumes:
   pg_data:
   cms_node_modules:
-  strapi_uploads:
+  cms_media:
   frontend_node_modules:

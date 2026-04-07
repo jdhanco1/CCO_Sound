@@ -1,0 +1,28 @@
+# Railway deploys each service separately.
+# Create two services in your Railway project:
+#   1. "cms"      — Payload CMS (API + Admin)
+#   2. "frontend" — React static site (nginx)
+# Plus a Postgres database plugin.
+#
+# Configure each service in the Railway dashboard:
+#
+# ── CMS Service ──────────────────────────────────────────
+# Root Directory:    cms
+# Builder:           Dockerfile
+# Dockerfile Path:   Dockerfile
+# Build Target:      production
+# Port:              3001
+# Variables:
+#   DATABASE_URL       = ${{Postgres.DATABASE_URL}}
+#   PAYLOAD_SECRET     = (generate a random string)
+#   CORS_ORIGINS       = https://your-frontend.up.railway.app
+#   PORT               = 3001
+#
+# ── Frontend Service ─────────────────────────────────────
+# Root Directory:    frontend
+# Builder:           Dockerfile
+# Dockerfile Path:   Dockerfile
+# Build Target:      production
+# Port:              80
+# Variables:
+#   VITE_CMS_URL       = https://your-cms.up.railway.app

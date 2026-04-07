@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import SermonCard from '../components/sermons/SermonCard';
-import useStrapi from '../hooks/useStrapi';
+import useContent from '../hooks/useContent';
 import { getSermons } from '../lib/api';
 
 export default function Sermons() {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
-  const { data, loading } = useStrapi(() => getSermons(page), [page]);
+  const { data, loading } = useContent(() => getSermons(page), [page]);
 
   const sermons = data?.items || [];
   const meta = data?.meta;
@@ -35,7 +35,7 @@ export default function Sermons() {
                 Sermons will appear here once added in the CMS.
               </p>
               <p className="mt-2 text-sm text-gray-400">
-                Admins can add sermons with video, audio, speaker, and series info via Strapi.
+                Admins can add sermons with video, audio, speaker, and series info via the CMS.
               </p>
             </div>
           ) : (

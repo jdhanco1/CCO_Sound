@@ -1,7 +1,5 @@
-import { STRAPI_URL } from '../../lib/api';
-
 export default function MinistryCard({ name, description, image, schedule }) {
-  const imgSrc = image?.url ? `${STRAPI_URL}${image.url}` : null;
+  const imgSrc = image?.url || null;
 
   return (
     <div className="group overflow-hidden rounded-2xl bg-white shadow-md transition-all duration-300 hover:shadow-xl">

@@ -1,106 +1,113 @@
-import axios from 'axios';
+export const CMS_URL = import.meta.env.VITE_CMS_URL || 'http://localhost:3001';
 
-export const STRAPI_URL = import.meta.env.VITE_STRAPI_URL || 'http://localhost:1337';
-const STRAPI_TOKEN = import.meta.env.VITE_STRAPI_TOKEN || '';
+// ── Helpers ─────────────────────────────────────────────────
 
-const api = axios.create({
-  baseURL: `${STRAPI_URL}/api`,
-  headers: STRAPI_TOKEN
-    ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
-    : {},
-});
+async function fetchAPI(path) {
+  const res = await fetch(`${CMS_URL}/api${path}`);
+  if (!res.ok) throw new Error(`API error: ${res.status}`);
+  return res.json();
+}
 
-/** Normalize Strapi v5 response: { data, meta } → flat array/object */
-function normalize(response) {
-  const { data } = response.data;
-  if (Array.isArray(data)) {
-    return data.map((item) => ({ id: item.id, ...item.attributes }));
+/** Normalize a Payload media/upload field into { url, alt } */
+function normalizeImage(field) {
+  if (!field) return null;
+  return { url: `${CMS_URL}${field.url}`, alt: field.alt || '' };
+}
+
+/** Normalize a Payload doc, resolving upload fields */
+function normalize(doc) {
+  if (!doc) return null;
+  const out = { ...doc };
+  // Resolve common upload fields
+  for (const key of ['photo', 'image', 'thumbnail', 'coverImage']) {
+    if (out[key] && typeof out[key] === 'object' && out[key].url) {
+      out[key] = normalizeImage(out[key]);
+    }
   }
-  return { id: data.id, ...data.attributes };
+  return out;
 }
 
 // ── Content fetchers ────────────────────────────────────────
 
-export async function getHomePage(locale = 'en') {
-  const res = await api.get('/home-page', {
-    params: { populate: '*', locale },
-  });
-  return normalize(res);
+export async function getHomePage() {
+  const res = await fetchAPI('/globals/home-page');
+  return res;
 }
 
-export async function getMissionPage(locale = 'en') {
-  const res = await api.get('/mission-page', {
-    params: { populate: 'sections.scriptures', locale },
-  });
-  return normalize(res);
+export async function getMissionPage() {
+  const res = await fetchAPI('/globals/mission-page');
+  return res;
 }
 
 export async function getStaff() {
-  const res = await api.get('/staff-members', {
-    params: { populate: 'photo', sort: 'order:asc' },
-  });
-  return normalize(res);
+  const res = await fetchAPI('/staff-members?sort=order&limit=100&depth=1');
+  return res.docs.map(normalize);
 }
 
 export async function getElders() {
-  const res = await api.get('/elders', {
-    params: { populate: 'photo', sort: 'order:asc' },
-  });
-  return normalize(res);
+  const res = await fetchAPI('/elders?sort=order&limit=100&depth=1');
+  return res.docs.map(normalize);
 }
 
-export async function getMinistries(locale = 'en') {
-  const res = await api.get('/ministries', {
-    params: { populate: 'image', sort: 'order:asc', locale },
-  });
-  return normalize(res);
+export async function getMinistries() {
+  const res = await fetchAPI('/ministries?sort=order&limit=100&depth=1');
+  return res.docs.map(normalize);
 }
 
 export async function getSermons(page = 1, pageSize = 12) {
-  const res = await api.get('/sermons', {
-    params: {
-      populate: 'speaker,series,thumbnail',
-      sort: 'date:desc',
-      'pagination[page]': page,
-      'pagination[pageSize]': pageSize,
+  const res = await fetchAPI(`/sermons?sort=-date&page=${page}&limit=${pageSize}&depth=1`);
+  return {
+    items: res.docs.map(normalize),
+    meta: {
+      pagination: {
+        page: res.page,
+        pageSize: res.limit,
+        pageCount: res.totalPages,
+        total: res.totalDocs,
+      },
     },
-  });
-  return { items: normalize(res), meta: res.data.meta };
+  };
 }
 
-export async function getBlogPosts(page = 1, pageSize = 9, locale = 'en') {
-  const res = await api.get('/blog-posts', {
-    params: {
-      populate: 'author,coverImage',
-      sort: 'publishedAt:desc',
-      locale,
-      'pagination[page]': page,
-      'pagination[pageSize]': pageSize,
+export async function getBlogPosts(page = 1, pageSize = 9) {
+  const res = await fetchAPI(`/blog-posts?sort=-createdAt&page=${page}&limit=${pageSize}&depth=1`);
+  return {
+    items: res.docs.map(normalize),
+    meta: {
+      pagination: {
+        page: res.page,
+        pageSize: res.limit,
+        pageCount: res.totalPages,
+        total: res.totalDocs,
+      },
     },
-  });
-  return { items: normalize(res), meta: res.data.meta };
+  };
 }
 
-export async function getEvents(locale = 'en') {
-  const res = await api.get('/events', {
-    params: {
-      populate: 'image',
-      sort: 'date:asc',
-      locale,
-      'filters[date][$gte]': new Date().toISOString().slice(0, 10),
-    },
-  });
-  return normalize(res);
+export async function getEvents() {
+  const today = new Date().toISOString().slice(0, 10);
+  const res = await fetchAPI(`/events?sort=date&where[date][greater_than_equal]=${today}&limit=100&depth=1`);
+  return res.docs.map(normalize);
 }
+
+// ── Form submissions (POST directly to Payload) ────────────
 
 export async function submitContactForm(data) {
-  return api.post('/contact-submissions', { data });
+  const res = await fetch(`${CMS_URL}/api/contact-submissions`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error('Failed to submit contact form');
+  return res.json();
 }
 
 export async function submitEventRegistration(eventId, data) {
-  return api.post('/event-registrations', {
-    data: { ...data, event: eventId },
+  const res = await fetch(`${CMS_URL}/api/event-registrations`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...data, event: eventId }),
   });
+  if (!res.ok) throw new Error('Failed to submit registration');
+  return res.json();
 }
-
-export default api;

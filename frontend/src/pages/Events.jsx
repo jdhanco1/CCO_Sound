@@ -4,13 +4,12 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import Button from '../components/common/Button';
-import useStrapi from '../hooks/useStrapi';
+import useContent from '../hooks/useContent';
 import { getEvents, submitEventRegistration } from '../lib/api';
-import { STRAPI_URL } from '../lib/api';
 
 export default function Events() {
   const { t, i18n } = useTranslation();
-  const { data: events, loading } = useStrapi(() => getEvents(i18n.language), [i18n.language]);
+  const { data: events, loading } = useContent(() => getEvents(i18n.language), [i18n.language]);
 
   return (
     <>
@@ -32,7 +31,7 @@ export default function Events() {
                 {t('events.no_events')}
               </p>
               <p className="mt-4 text-sm text-gray-400">
-                Events can be managed by admins in the Strapi CMS.
+                Events can be managed by admins in the CMS.
               </p>
               <div className="mt-6">
                 <Button href="https://communityoxford.ccbchurch.com/w_calendar.php" variant="primary">
@@ -58,7 +57,7 @@ function EventItem({ event, t }) {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const imgSrc = event.image?.url ? `${STRAPI_URL}${event.image.url}` : null;
+  const imgSrc = event.image?.url || null;
   const dateStr = new Date(event.date).toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',

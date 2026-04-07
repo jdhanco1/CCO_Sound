@@ -4,7 +4,7 @@ import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import MinistryCard from '../components/connect/MinistryCard';
 import Button from '../components/common/Button';
-import useStrapi from '../hooks/useStrapi';
+import useContent from '../hooks/useContent';
 import { getMinistries } from '../lib/api';
 
 // Fallback data based on the current site
@@ -67,7 +67,7 @@ const fallbackMinistries = [
 
 export default function Connect() {
   const { t, i18n } = useTranslation();
-  const { data: ministries } = useStrapi(() => getMinistries(i18n.language), [i18n.language]);
+  const { data: ministries } = useContent(() => getMinistries(i18n.language), [i18n.language]);
 
   const list = ministries || fallbackMinistries;
 
