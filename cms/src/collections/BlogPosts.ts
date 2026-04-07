@@ -1,42 +1,17 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload'
 
 export const BlogPosts: CollectionConfig = {
   slug: 'blog-posts',
-  admin: {
-    useAsTitle: 'title',
-    group: 'Content',
-    defaultColumns: ['title', 'author', 'createdAt'],
-  },
-  access: {
-    read: () => true,
-  },
+  admin: { useAsTitle: 'title' },
+  access: { read: () => true },
   fields: [
     { name: 'title', type: 'text', required: true },
-    {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true,
-      admin: { description: 'URL-friendly identifier (e.g. "my-blog-post")' },
-    },
-    {
-      name: 'excerpt',
-      type: 'textarea',
-      admin: { description: 'Short preview shown on the blog listing page' },
-    },
-    {
-      name: 'body',
-      type: 'richText',
-      required: true,
-    },
-    {
-      name: 'coverImage',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'author',
-      type: 'text',
-    },
+    { name: 'slug', type: 'text', required: true, unique: true },
+    { name: 'author', type: 'text', required: true },
+    { name: 'publishedDate', type: 'date', required: true },
+    { name: 'excerpt', type: 'textarea' },
+    { name: 'content', type: 'richText' },
+    { name: 'coverImage', type: 'upload', relationTo: 'media' },
+    { name: 'tags', type: 'array', fields: [{ name: 'tag', type: 'text' }] },
   ],
-};
+}

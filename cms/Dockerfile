@@ -1,39 +1,28 @@
-# ── Payload CMS Dockerfile ─────────────────────────────────
-# Dev:  docker compose up cms
-# Prod: docker build --target production -t cco-cms .
-# ──────────────────────────────────────────────────────────
-
-# ── Stage 1: Base ────────────────────────────────────────
-FROM node:22-alpine AS base
+# --- Dev stage ---
+FROM node:20-alpine AS dev
 WORKDIR /app
-COPY package.json package-lock.json* ./
-
-# ── Stage 2: Development ────────────────────────────────
-FROM base AS dev
-ENV NODE_ENV=development
+COPY package.json ./
 RUN npm install
 COPY . .
 EXPOSE 3001
 CMD ["npm", "run", "dev"]
 
-# ── Stage 3: Build ──────────────────────────────────────
-FROM base AS build
-ENV NODE_ENV=production
-RUN npm ci
+# --- Build stage ---
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package.json ./
+RUN npm install
 COPY . .
 RUN npm run build
 
-# ── Stage 4: Production ────────────────────────────────
-FROM node:22-alpine AS production
+# --- Production stage ---
+FROM node:20-alpine AS prod
 WORKDIR /app
 ENV NODE_ENV=production
-
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/.next ./.next
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/package.json ./
-COPY --from=build /app/build ./build
-
-RUN mkdir -p /app/media && chown -R node:node /app
-USER node
+COPY --from=build /app/next.config.mjs ./
+COPY --from=build /app/src ./src
 EXPOSE 3001
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "start"]

@@ -1,26 +1,18 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload'
 
 export const EventRegistrations: CollectionConfig = {
   slug: 'event-registrations',
-  admin: {
-    useAsTitle: 'name',
-    group: 'Forms',
-    defaultColumns: ['name', 'email', 'event', 'createdAt'],
-    description: 'Event registration submissions from the website',
-  },
+  admin: { useAsTitle: 'name' },
   access: {
     read: () => true,
-    create: () => true, // Allow anonymous form submissions
+    create: () => true,
   },
   fields: [
+    { name: 'event', type: 'relationship', relationTo: 'events', required: true },
     { name: 'name', type: 'text', required: true },
     { name: 'email', type: 'email', required: true },
     { name: 'phone', type: 'text' },
-    {
-      name: 'event',
-      type: 'relationship',
-      relationTo: 'events',
-      required: true,
-    },
+    { name: 'numberOfAttendees', type: 'number', defaultValue: 1 },
+    { name: 'notes', type: 'textarea' },
   ],
-};
+}

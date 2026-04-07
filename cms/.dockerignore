@@ -1,6 +1,7 @@
 node_modules
-dist
-build
-media
+.next
 .env
+.env.local
 .git
+dist
+media

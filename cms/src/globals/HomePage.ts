@@ -1,24 +1,41 @@
-import { GlobalConfig } from 'payload/types';
+import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
-  admin: {
-    group: 'Pages',
-  },
-  access: {
-    read: () => true,
-  },
+  access: { read: () => true },
   fields: [
+    { name: 'heroTitle', type: 'text', required: true },
+    { name: 'heroSubtitle', type: 'text' },
+    { name: 'heroImage', type: 'upload', relationTo: 'media' },
+    { name: 'heroButtonText', type: 'text' },
+    { name: 'heroButtonLink', type: 'text' },
     {
-      name: 'tagline',
-      type: 'text',
-      label: 'Hero Tagline',
-      defaultValue: 'Come & be part of the Community',
+      name: 'welcomeSection',
+      type: 'group',
+      fields: [
+        { name: 'heading', type: 'text' },
+        { name: 'content', type: 'richText' },
+        { name: 'image', type: 'upload', relationTo: 'media' },
+      ],
     },
     {
-      name: 'subtitle',
-      type: 'textarea',
-      label: 'Hero Subtitle',
+      name: 'announcements',
+      type: 'array',
+      fields: [
+        { name: 'title', type: 'text', required: true },
+        { name: 'content', type: 'textarea' },
+        { name: 'link', type: 'text' },
+        { name: 'date', type: 'date' },
+      ],
+    },
+    {
+      name: 'servicesTimes',
+      type: 'array',
+      fields: [
+        { name: 'day', type: 'text', required: true },
+        { name: 'time', type: 'text', required: true },
+        { name: 'description', type: 'text' },
+      ],
     },
   ],
-};
+}

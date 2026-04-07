@@ -1,35 +1,29 @@
-import { GlobalConfig } from 'payload/types';
+import type { GlobalConfig } from 'payload'
 
 export const MissionPage: GlobalConfig = {
   slug: 'mission-page',
-  admin: {
-    group: 'Pages',
-  },
-  access: {
-    read: () => true,
-  },
+  access: { read: () => true },
   fields: [
-    {
-      name: 'intro',
-      type: 'textarea',
-      label: 'Introduction Text',
-    },
+    { name: 'heroTitle', type: 'text', required: true },
+    { name: 'heroSubtitle', type: 'text' },
+    { name: 'heroImage', type: 'upload', relationTo: 'media' },
+    { name: 'missionStatement', type: 'richText' },
     {
       name: 'sections',
       type: 'array',
-      label: 'Mission Sections',
       fields: [
-        { name: 'title', type: 'text', required: true },
-        { name: 'text', type: 'textarea', required: true },
+        { name: 'heading', type: 'text', required: true },
+        { name: 'content', type: 'richText' },
+        { name: 'image', type: 'upload', relationTo: 'media' },
         {
-          name: 'scriptures',
-          type: 'array',
-          label: 'Scripture References',
+          name: 'scriptureReference',
+          type: 'group',
           fields: [
-            { name: 'reference', type: 'text', required: true },
+            { name: 'text', type: 'textarea' },
+            { name: 'reference', type: 'text' },
           ],
         },
       ],
     },
   ],
-};
+}

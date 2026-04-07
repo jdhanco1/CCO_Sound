@@ -1,20 +1,17 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload'
 
 export const ContactSubmissions: CollectionConfig = {
   slug: 'contact-submissions',
-  admin: {
-    useAsTitle: 'name',
-    group: 'Forms',
-    defaultColumns: ['name', 'email', 'createdAt'],
-    description: 'Contact form submissions from the website',
-  },
+  admin: { useAsTitle: 'name' },
   access: {
     read: () => true,
-    create: () => true, // Allow anonymous form submissions
+    create: () => true,
   },
   fields: [
     { name: 'name', type: 'text', required: true },
     { name: 'email', type: 'email', required: true },
+    { name: 'phone', type: 'text' },
+    { name: 'subject', type: 'text' },
     { name: 'message', type: 'textarea', required: true },
   ],
-};
+}
