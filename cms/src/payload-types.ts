@@ -220,6 +220,17 @@ export interface Elder {
 export interface Ministry {
   id: number;
   name: string;
+  /**
+   * URL-friendly identifier, e.g. "community-groups"
+   */
+  slug?: string | null;
+  /**
+   * Short description shown on the Connect page card (1-2 sentences)
+   */
+  summary?: string | null;
+  /**
+   * Full description shown on the ministry detail page
+   */
   description?: {
     root: {
       type: string;
@@ -237,6 +248,7 @@ export interface Ministry {
   } | null;
   image?: (number | null) | Media;
   leader?: string | null;
+  contactEmail?: string | null;
   meetingTime?: string | null;
   location?: string | null;
   order?: number | null;
@@ -574,9 +586,12 @@ export interface EldersSelect<T extends boolean = true> {
  */
 export interface MinistriesSelect<T extends boolean = true> {
   name?: T;
+  slug?: T;
+  summary?: T;
   description?: T;
   image?: T;
   leader?: T;
+  contactEmail?: T;
   meetingTime?: T;
   location?: T;
   order?: T;

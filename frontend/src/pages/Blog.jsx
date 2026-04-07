@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import PageHero from '../components/common/PageHero';
 import BlogCard from '../components/blog/BlogCard';
 import useContent from '../hooks/useContent';
 import { getBlogPosts } from '../lib/api';
@@ -20,10 +19,11 @@ export default function Blog() {
         <title>{t('blog.title')} — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('blog.title')} />
-
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
+          <h1 className="mb-10 font-serif text-3xl font-bold text-brand-dark md:text-4xl">
+            {t('blog.title')}
+          </h1>
           {loading && !posts.length ? (
             <div className="py-20 text-center text-gray-400">
               <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />
@@ -49,7 +49,7 @@ export default function Blog() {
                     excerpt={p.excerpt}
                     coverImage={p.coverImage}
                     author={p.author}
-                    publishedAt={p.publishedAt}
+                    publishedAt={p.publishedDate}
                   />
                 ))}
               </div>

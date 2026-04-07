@@ -7,69 +7,11 @@ import Button from '../components/common/Button';
 import useContent from '../hooks/useContent';
 import { getMinistries } from '../lib/api';
 
-// Fallback data based on the current site
-const fallbackMinistries = [
-  {
-    id: 1,
-    name: 'Community Groups',
-    description:
-      'Community Groups are designed for you to connect with other people on a more personal level and do life together. Groups are typically 10-15 people, meeting in people\'s homes or the church office throughout the week.',
-    schedule: 'Various days throughout the week',
-  },
-  {
-    id: 2,
-    name: "Men's Ministry",
-    description:
-      'We believe it is good and healthy to continue relationships with other Godly men. We typically meet the second and fourth Mondays of each month to hang out, eat, learn more about Biblical manhood and encourage each other.',
-    schedule: '2nd & 4th Mondays, 6:00 PM at office building',
-  },
-  {
-    id: 3,
-    name: "Women's Ministry",
-    description:
-      "We offer Ladies' Bible Studies, Exhale events (Ladies' Night Out, classes, events) and Ladies' Book Club. No matter what season of life you are in, all ladies love some quality \"girl time.\"",
-  },
-  {
-    id: 4,
-    name: 'Next Gen (Children)',
-    description:
-      'We want to work alongside parents to give their children Biblical knowledge of who God truly is. We offer classes for children (infants through 5th grade) during our Sunday morning services.',
-    schedule: 'Sunday mornings during service',
-  },
-  {
-    id: 5,
-    name: 'Mission Kids',
-    description:
-      'Mission Kids is our mid-week gathering for children (Kindergarten through 5th grade). Dinner is provided. We use The Gospel Project for Kids curriculum.',
-    schedule: 'Wednesdays 5:30-7:30 PM at Lafayette Middle School',
-  },
-  {
-    id: 6,
-    name: 'CCO Students (6th-12th Grade)',
-    description:
-      'Our ministry is centered around John 17:3. We want to lead students towards Jesus and help give them a Biblical worldview.',
-    schedule: 'Wednesdays 5:30-7:30 PM at church office',
-  },
-  {
-    id: 7,
-    name: 'College Ministry',
-    description:
-      'We love for college students to get plugged in at CCO! We have Community Groups designed specifically for college students, as well as opportunities to serve and do life with others.',
-  },
-  {
-    id: 8,
-    name: 'Serve Teams',
-    description:
-      'Because we meet in a school, many of our elements are portable. We have teams that help load-in and load-out all of our equipment each week, greeting, parking, and making coffee.',
-    schedule: 'Sunday mornings',
-  },
-];
-
 export default function Connect() {
-  const { t, i18n } = useTranslation();
-  const { data: ministries } = useContent(() => getMinistries(i18n.language), [i18n.language]);
+  const { t } = useTranslation();
+  const { data: ministries, loading } = useContent(getMinistries);
 
-  const list = ministries || fallbackMinistries;
+  const list = ministries || [];
 
   return (
     <>
@@ -81,17 +23,30 @@ export default function Connect() {
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {list.map((m) => (
-              <MinistryCard
-                key={m.id}
-                name={m.name}
-                description={m.description}
-                image={m.image}
-                schedule={m.schedule}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="py-20 text-center text-gray-400">
+              <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />
+            </div>
+          ) : list.length === 0 ? (
+            <div className="rounded-2xl bg-warm p-12 text-center">
+              <p className="font-serif text-xl text-gray-500">Ministries will appear here once added in the CMS.</p>
+            </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {list.map((m) => (
+                <MinistryCard
+                  key={m.id}
+                  slug={m.slug}
+                  name={m.name}
+                  summary={m.summary}
+                  image={m.image}
+                  meetingTime={m.meetingTime}
+                  location={m.location}
+                  leader={m.leader}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

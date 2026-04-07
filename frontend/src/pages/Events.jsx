@@ -58,7 +58,7 @@ function EventItem({ event, t }) {
   const [submitted, setSubmitted] = useState(false);
 
   const imgSrc = event.image?.url || null;
-  const dateStr = new Date(event.date).toLocaleDateString('en-US', {
+  const dateStr = new Date(event.startDate).toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
     day: 'numeric',

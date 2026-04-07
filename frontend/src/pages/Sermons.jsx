@@ -45,7 +45,7 @@ export default function Sermons() {
                   <SermonCard
                     key={s.id}
                     title={s.title}
-                    speaker={s.speaker}
+                    speaker={s.preacher}
                     date={s.date}
                     videoUrl={s.videoUrl}
                     audioUrl={s.audioUrl}

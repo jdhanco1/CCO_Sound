@@ -4,8 +4,10 @@ import Home from './pages/Home';
 import Mission from './pages/Mission';
 import Leadership from './pages/Leadership';
 import Connect from './pages/Connect';
+import Ministry from './pages/Ministry';
 import Sermons from './pages/Sermons';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
 
@@ -17,8 +19,10 @@ export default function App() {
         <Route path="mission" element={<Mission />} />
         <Route path="leadership" element={<Leadership />} />
         <Route path="connect" element={<Connect />} />
+        <Route path="connect/:slug" element={<Ministry />} />
         <Route path="sermons" element={<Sermons />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="events" element={<Events />} />
         <Route path="contact" element={<Contact />} />
       </Route>

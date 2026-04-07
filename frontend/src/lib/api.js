@@ -54,6 +54,12 @@ export async function getMinistries() {
   return res.docs.map(normalize);
 }
 
+export async function getMinistry(slug) {
+  const res = await fetchAPI(`/ministries?where[slug][equals]=${encodeURIComponent(slug)}&depth=1&limit=1`);
+  const doc = res.docs?.[0];
+  return doc ? normalize(doc) : null;
+}
+
 export async function getSermons(page = 1, pageSize = 12) {
   const res = await fetchAPI(`/sermons?sort=-date&page=${page}&limit=${pageSize}&depth=1`);
   return {
@@ -69,8 +75,14 @@ export async function getSermons(page = 1, pageSize = 12) {
   };
 }
 
+export async function getBlogPost(slug) {
+  const res = await fetchAPI(`/blog-posts?where[slug][equals]=${encodeURIComponent(slug)}&depth=1&limit=1`);
+  const doc = res.docs?.[0];
+  return doc ? normalize(doc) : null;
+}
+
 export async function getBlogPosts(page = 1, pageSize = 9) {
-  const res = await fetchAPI(`/blog-posts?sort=-createdAt&page=${page}&limit=${pageSize}&depth=1`);
+  const res = await fetchAPI(`/blog-posts?sort=-publishedDate&page=${page}&limit=${pageSize}&depth=1`);
   return {
     items: res.docs.map(normalize),
     meta: {
@@ -86,7 +98,7 @@ export async function getBlogPosts(page = 1, pageSize = 9) {
 
 export async function getEvents() {
   const today = new Date().toISOString().slice(0, 10);
-  const res = await fetchAPI(`/events?sort=date&where[date][greater_than_equal]=${today}&limit=100&depth=1`);
+  const res = await fetchAPI(`/events?sort=startDate&where[startDate][greater_than_equal]=${today}&limit=100&depth=1`);
   return res.docs.map(normalize);
 }
 

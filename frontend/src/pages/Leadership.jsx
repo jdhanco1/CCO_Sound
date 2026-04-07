@@ -7,35 +7,13 @@ import useContent from '../hooks/useContent';
 import { getStaff, getElders } from '../lib/api';
 import Button from '../components/common/Button';
 
-const fallbackStaff = [
-  { id: 1, name: 'Fish Robinson', title: 'Lead Pastor/Teaching Elder' },
-  { id: 2, name: 'Peggie Wilson', title: 'Ministry Coordinator & Office Coordinator' },
-  { id: 3, name: 'Javi Sanchez', title: 'Media Production Director & Director of Spanish Ministry' },
-  { id: 4, name: 'Ryan Watson', title: 'Associate Pastor to Families & Discipleship' },
-  { id: 5, name: 'Kelsey Cooper', title: 'Student Ministry Team Member' },
-  { id: 6, name: 'Lyndsey Thompson', title: 'Minister to College Students' },
-  { id: 7, name: 'Grayson Inman', title: 'Associate Pastor to Students & Worship' },
-  { id: 8, name: 'Beth Robinson', title: "Creative Director & Women's Ministry Director" },
-];
-
-const fallbackElders = [
-  { id: 1, name: 'Fish Robinson', title: 'Elder' },
-  { id: 2, name: 'John Youngblood', title: 'Elder' },
-  { id: 3, name: 'Guy Billups', title: 'Elder' },
-  { id: 4, name: 'Braden Theobald', title: 'Elder' },
-  { id: 5, name: 'Keith DePriest', title: 'Elder' },
-  { id: 6, name: 'Jarred Hancock', title: 'Elder' },
-  { id: 7, name: 'Brian Rhodes', title: 'Elder' },
-  { id: 8, name: 'Javi Sanchez', title: 'Elder' },
-];
-
 export default function Leadership() {
   const { t } = useTranslation();
-  const { data: staff } = useContent(getStaff);
-  const { data: elders } = useContent(getElders);
+  const { data: staff, loading: staffLoading } = useContent(getStaff);
+  const { data: elders, loading: eldersLoading } = useContent(getElders);
 
-  const staffList = staff || fallbackStaff;
-  const elderList = elders || fallbackElders;
+  const staffList = staff || [];
+  const elderList = elders || [];
 
   return (
     <>
@@ -48,22 +26,38 @@ export default function Leadership() {
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
           <SectionHeader eyebrow="Our Team" title={t('leadership.staff_heading')} />
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {staffList.map((s) => (
-              <StaffCard key={s.id} name={s.name} title={s.title} photo={s.photo} />
-            ))}
-          </div>
+          {staffLoading ? (
+            <div className="py-16 text-center text-gray-400">
+              <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />
+            </div>
+          ) : staffList.length === 0 ? (
+            <p className="mt-8 text-center text-gray-400">Staff members will appear here once added in the CMS.</p>
+          ) : (
+            <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {staffList.map((s) => (
+                <StaffCard key={s.id} name={s.name} title={s.title} photo={s.photo} bio={s.bio} email={s.email} phone={s.phone} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
       <section className="bg-warm py-16">
         <div className="mx-auto max-w-6xl px-4">
           <SectionHeader eyebrow="Church Governance" title={t('leadership.elders_heading')} />
-          <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {elderList.map((e) => (
-              <StaffCard key={e.id} name={e.name} title={e.title} photo={e.photo} />
-            ))}
-          </div>
+          {eldersLoading ? (
+            <div className="py-16 text-center text-gray-400">
+              <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />
+            </div>
+          ) : elderList.length === 0 ? (
+            <p className="mt-8 text-center text-gray-400">Elders will appear here once added in the CMS.</p>
+          ) : (
+            <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {elderList.map((e) => (
+                <StaffCard key={e.id} name={e.name} title={e.title} photo={e.photo} bio={e.bio} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
