@@ -36,6 +36,12 @@ CMD ["npx", "vite", "--host", "0.0.0.0", "--port", "3000"]
 # ── Stage 3: Build production assets ────────────────────
 FROM base AS build
 
+# Allow Railway (or CI) to pass the CMS URL in at build time.
+# Default is empty string so all requests become relative paths
+# and nginx proxies them to ${CMS_URL} at runtime.
+ARG VITE_CMS_URL=""
+ENV VITE_CMS_URL=$VITE_CMS_URL
+
 ENV NODE_ENV=production
 
 RUN npm ci --legacy-peer-deps
@@ -53,9 +59,15 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy built static files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# SPA routing — fallback to index.html for all routes
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# nginx.conf uses ${CMS_URL} — stored as a template; envsubst runs at start
+COPY nginx.conf /etc/nginx/conf.d/default.conf.template
+
+# Entrypoint: substitutes ${CMS_URL} then launches nginx
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 80
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]

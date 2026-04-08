@@ -1,4 +1,6 @@
-export const CMS_URL = import.meta.env.VITE_CMS_URL || 'http://localhost:3001';
+// Empty string → relative URLs → nginx proxies to CMS in production.
+// Local dev: VITE_CMS_URL is set to http://localhost:3001 via docker-compose.
+export const CMS_URL = import.meta.env.VITE_CMS_URL ?? 'http://localhost:3001';
 
 // ── Helpers ─────────────────────────────────────────────────
 
