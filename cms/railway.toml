@@ -4,9 +4,8 @@
   dockerBuildTarget = "prod"
 
 [deploy]
-  # Use root path — Payload redirects / to /admin which returns 200/302
-  # /api/health can fail before DB migration completes on first boot
-  healthcheckPath    = "/"
-  healthcheckTimeout = 300
-  restartPolicyType  = "ON_FAILURE"
+  # No healthcheck path — Railway considers the deploy healthy once the
+  # container starts and stays running. This avoids false failures during
+  # Payload's first-boot DB migration.
+  restartPolicyType       = "ON_FAILURE"
   restartPolicyMaxRetries = 3
