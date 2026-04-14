@@ -61,10 +61,10 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy built static files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# nginx.conf uses ${CMS_URL} — stored as a template; envsubst runs at start
-COPY nginx.conf /etc/nginx/conf.d/default.conf.template
+# nginx.conf is static — no envsubst needed in production
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Entrypoint: substitutes ${CMS_URL} then launches nginx
+# Entrypoint just starts nginx
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
