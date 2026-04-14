@@ -61,10 +61,10 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy built static files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# nginx.conf is static — no envsubst needed in production
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# nginx.conf template — ${PORT} is substituted at container start
+COPY nginx.conf /etc/nginx/conf.d/default.conf.template
 
-# Entrypoint just starts nginx
+# Entrypoint substitutes $PORT then starts nginx
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 

@@ -1,8 +1,13 @@
 #!/bin/sh
 set -e
 
-# In production (Railway), VITE_CMS_URL is baked into the JS bundle at build
-# time so the browser calls the CMS directly — no nginx proxy needed.
-# Just start nginx as-is.
+# Railway injects $PORT; substitute it into the nginx config.
+# Default to 80 for local Docker usage.
+export PORT="${PORT:-80}"
+
+envsubst '${PORT}' \
+  < /etc/nginx/conf.d/default.conf.template \
+  > /etc/nginx/conf.d/default.conf
+
 exec nginx -g 'daemon off;'
 
