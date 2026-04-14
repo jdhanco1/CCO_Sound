@@ -16,6 +16,7 @@ import { ContactSubmissions } from './collections/ContactSubmissions'
 import { EventRegistrations } from './collections/EventRegistrations'
 import { HomePage } from './globals/HomePage'
 import { MissionPage } from './globals/MissionPage'
+import { PageHeroes } from './globals/PageHeroes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -33,7 +34,7 @@ export default buildConfig({
     ContactSubmissions,
     EventRegistrations,
   ],
-  globals: [HomePage, MissionPage],
+  globals: [HomePage, MissionPage, PageHeroes],
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
   db: postgresAdapter({
     pool: {

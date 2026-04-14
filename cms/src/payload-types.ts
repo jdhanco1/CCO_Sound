@@ -106,10 +106,12 @@ export interface Config {
   globals: {
     'home-page': HomePage;
     'mission-page': MissionPage;
+    'page-heroes': PageHero;
   };
   globalsSelect: {
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
     'mission-page': MissionPageSelect<false> | MissionPageSelect<true>;
+    'page-heroes': PageHeroesSelect<false> | PageHeroesSelect<true>;
   };
   locale: null;
   widgets: {
@@ -771,6 +773,14 @@ export interface HomePage {
       [k: string]: unknown;
     } | null;
     image?: (number | null) | Media;
+    /**
+     * YouTube or Vimeo embed URL for the welcome section
+     */
+    videoUrl?: string | null;
+    /**
+     * Welcome paragraph shown beside the video
+     */
+    welcomeText?: string | null;
   };
   announcements?:
     | {
@@ -801,6 +811,10 @@ export interface MissionPage {
   heroTitle: string;
   heroSubtitle?: string | null;
   heroImage?: (number | null) | Media;
+  visionImages?: {
+    visionImage1?: (number | null) | Media;
+    visionImage2?: (number | null) | Media;
+  };
   missionStatement?: {
     root: {
       type: string;
@@ -847,6 +861,50 @@ export interface MissionPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-heroes".
+ */
+export interface PageHero {
+  id: number;
+  leadership?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  sermons?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  events?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  contact?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  connect?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  blog?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  mission?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+    heroImage?: (number | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home-page_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
@@ -861,6 +919,8 @@ export interface HomePageSelect<T extends boolean = true> {
         heading?: T;
         content?: T;
         image?: T;
+        videoUrl?: T;
+        welcomeText?: T;
       };
   announcements?:
     | T
@@ -891,6 +951,12 @@ export interface MissionPageSelect<T extends boolean = true> {
   heroTitle?: T;
   heroSubtitle?: T;
   heroImage?: T;
+  visionImages?:
+    | T
+    | {
+        visionImage1?: T;
+        visionImage2?: T;
+      };
   missionStatement?: T;
   sections?:
     | T
@@ -905,6 +971,64 @@ export interface MissionPageSelect<T extends boolean = true> {
               reference?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-heroes_select".
+ */
+export interface PageHeroesSelect<T extends boolean = true> {
+  leadership?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  sermons?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  events?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  contact?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  connect?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  blog?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
+      };
+  mission?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+        heroImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

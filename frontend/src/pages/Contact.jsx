@@ -4,13 +4,18 @@ import { Helmet } from 'react-helmet-async';
 import { HiOutlineClock, HiOutlineLocationMarker, HiOutlinePhone } from 'react-icons/hi';
 import PageHero from '../components/common/PageHero';
 import Button from '../components/common/Button';
-import { submitContactForm } from '../lib/api';
+import useContent from '../hooks/useContent';
+import { submitContactForm, getPageHeroes, CMS_URL } from '../lib/api';
 
 export default function Contact() {
   const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const { data: heroes } = useContent(getPageHeroes);
+
+  const heroConfig = heroes?.contact;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +33,7 @@ export default function Contact() {
         <title>{t('contact.title')} — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('contact.title')} />
+      <PageHero title={heroConfig?.heroTitle || t('contact.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">

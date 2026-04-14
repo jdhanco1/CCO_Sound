@@ -1,7 +1,12 @@
-export default function PageHero({ title, subtitle, bgClass = 'hero-gradient' }) {
+export default function PageHero({ title, subtitle, backgroundImage, bgClass = 'hero-gradient' }) {
+  const hasImage = !!backgroundImage;
+
   return (
-    <section className={`relative flex min-h-[320px] items-center justify-center ${bgClass}`}>
-      <div className="absolute inset-0 bg-black/20" />
+    <section
+      className={`relative flex min-h-[320px] items-center justify-center ${hasImage ? '' : bgClass}`}
+      style={hasImage ? { backgroundImage: `url('${backgroundImage}')`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+    >
+      <div className={`absolute inset-0 ${hasImage ? 'bg-black/50' : 'bg-black/20'}`} />
       <div className="relative z-10 px-4 text-center">
         <h1 className="animate-fade-in-up font-serif text-4xl font-bold text-white md:text-5xl lg:text-6xl">
           {title}

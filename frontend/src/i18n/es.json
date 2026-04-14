@@ -1,6 +1,6 @@
 {
   "nav": {
-    "mission": "Misión",
+    "mission": "Sobre Nosotros",
     "leadership": "Liderazgo",
     "connect": "Conéctate",
     "sermons": "Sermones",
@@ -20,8 +20,11 @@
     "service_time": "9:45 AM",
     "service_location": "Lafayette High School Gym · Oxford, MS",
     "quick_give": "Dar en Línea",
+    "quick_give_desc": "Apoya nuestro ministerio",
     "quick_ministries": "Áreas de Ministerio",
+    "quick_ministries_desc": "Encuentra tu lugar para servir",
     "quick_ccb": "Church Community Builder",
+    "quick_ccb_desc": "Inicio de sesión y recursos",
     "section_about": "Bienvenido a Community",
     "section_about_text": "En Community Church Oxford, nuestra misión es Buscar, Formar y Enviar. Somos una familia de seguidores de Cristo comprometidos a compartir el Evangelio en Oxford, MS y más allá."
   },

@@ -4,13 +4,16 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import SermonCard from '../components/sermons/SermonCard';
 import useContent from '../hooks/useContent';
-import { getSermons } from '../lib/api';
+import { getSermons, getPageHeroes, CMS_URL } from '../lib/api';
 
 export default function Sermons() {
   const { t } = useTranslation();
   const [page, setPage] = useState(1);
   const { data, loading } = useContent(() => getSermons(page), [page]);
+  const { data: heroes } = useContent(getPageHeroes);
 
+  const heroConfig = heroes?.sermons;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
   const sermons = data?.items || [];
   const meta = data?.meta;
 
@@ -20,7 +23,7 @@ export default function Sermons() {
         <title>Sermons — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('sermons.title')} />
+      <PageHero title={heroConfig?.heroTitle || t('sermons.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">

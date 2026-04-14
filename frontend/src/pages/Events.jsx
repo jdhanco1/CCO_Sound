@@ -5,11 +5,15 @@ import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import Button from '../components/common/Button';
 import useContent from '../hooks/useContent';
-import { getEvents, submitEventRegistration } from '../lib/api';
+import { getEvents, submitEventRegistration, getPageHeroes, CMS_URL } from '../lib/api';
 
 export default function Events() {
   const { t, i18n } = useTranslation();
   const { data: events, loading } = useContent(() => getEvents(i18n.language), [i18n.language]);
+  const { data: heroes } = useContent(getPageHeroes);
+
+  const heroConfig = heroes?.events;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
 
   return (
     <>
@@ -17,7 +21,7 @@ export default function Events() {
         <title>{t('events.title')} — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('events.title')} />
+      <PageHero title={heroConfig?.heroTitle || t('events.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
 
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4">

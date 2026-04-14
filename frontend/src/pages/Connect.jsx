@@ -5,12 +5,15 @@ import SectionHeader from '../components/common/SectionHeader';
 import MinistryCard from '../components/connect/MinistryCard';
 import Button from '../components/common/Button';
 import useContent from '../hooks/useContent';
-import { getMinistries } from '../lib/api';
+import { getMinistries, getPageHeroes, CMS_URL } from '../lib/api';
 
 export default function Connect() {
   const { t } = useTranslation();
   const { data: ministries, loading } = useContent(getMinistries);
+  const { data: heroes } = useContent(getPageHeroes);
 
+  const heroConfig = heroes?.connect;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
   const list = ministries || [];
 
   return (
@@ -19,7 +22,7 @@ export default function Connect() {
         <title>Connect — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('connect.title')} subtitle={t('connect.intro')} />
+      <PageHero title={heroConfig?.heroTitle || t('connect.title')} subtitle={heroConfig?.heroSubtitle || t('connect.intro')} backgroundImage={heroImage} />
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">

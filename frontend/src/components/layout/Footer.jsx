@@ -26,8 +26,8 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           {/* Branding */}
           <div>
-            <h3 className="mb-3 font-serif text-xl font-bold tracking-tight">
-              Community Church Oxford
+            <h3 className="mb-3 font-sans text-xl font-bold tracking-tight">
+              COMMUNITY CHURCH OXFORD
             </h3>
             <p className="text-sm leading-relaxed text-gray-300">
               Seek · Shape · Send
@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
+            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-accent">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -59,7 +59,7 @@ export default function Footer() {
 
           {/* Social / Give */}
           <div>
-            <h4 className="mb-3 text-sm font-semibold uppercase tracking-widest text-accent">
+            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-accent">
               Follow Us
             </h4>
             <div className="flex gap-4">
@@ -80,7 +80,7 @@ export default function Footer() {
               href="https://pushpay.com/pay/communityoxford"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block rounded-full bg-accent px-6 py-2.5 text-sm font-semibold uppercase text-white shadow transition hover:bg-accent-light"
+              className="mt-6 inline-block rounded-full bg-accent px-6 py-2.5 text-sm font-sans font-semibold uppercase text-white shadow transition hover:bg-accent-light"
             >
               {t('nav.give')}
             </a>

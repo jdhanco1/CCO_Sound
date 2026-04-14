@@ -13,10 +13,10 @@ export default function Button({
     'inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-wide transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2';
 
   const variants = {
-    primary: 'bg-accent text-white hover:bg-accent-light focus:ring-accent',
-    secondary: 'bg-brand text-white hover:bg-brand-light focus:ring-brand',
-    outline: 'border-2 border-accent text-accent hover:bg-accent hover:text-white focus:ring-accent',
-    white: 'bg-white text-brand hover:bg-gray-100 focus:ring-white',
+    primary: 'bg-gray-800 text-white hover:bg-gray-700 focus:ring-gray-700',
+    secondary: 'bg-brand text-gray-900 hover:bg-brand/80 focus:ring-brand',
+    outline: 'border-2 border-gray-500 text-gray-600 hover:bg-gray-600 hover:text-white focus:ring-gray-500',
+    white: 'bg-white text-gray-800 hover:bg-gray-100 focus:ring-white',
   };
 
   const sizes = {

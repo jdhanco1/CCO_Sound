@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
+import PageHero from '../components/common/PageHero';
 import BlogCard from '../components/blog/BlogCard';
 import useContent from '../hooks/useContent';
-import { getBlogPosts } from '../lib/api';
+import { getBlogPosts, getPageHeroes, CMS_URL } from '../lib/api';
 
 export default function Blog() {
   const { t, i18n } = useTranslation();
   const [page, setPage] = useState(1);
   const { data, loading } = useContent(() => getBlogPosts(page, 9, i18n.language), [page, i18n.language]);
+  const { data: heroes } = useContent(getPageHeroes);
 
+  const heroConfig = heroes?.blog;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
   const posts = data?.items || [];
   const meta = data?.meta;
 
@@ -19,11 +23,10 @@ export default function Blog() {
         <title>{t('blog.title')} — Community Church Oxford</title>
       </Helmet>
 
+      <PageHero title={heroConfig?.heroTitle || t('blog.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
+
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
-          <h1 className="mb-10 font-serif text-3xl font-bold text-brand-dark md:text-4xl">
-            {t('blog.title')}
-          </h1>
           {loading && !posts.length ? (
             <div className="py-20 text-center text-gray-400">
               <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />

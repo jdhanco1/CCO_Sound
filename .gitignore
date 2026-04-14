@@ -1,0 +1,31 @@
+# ── Dependencies ─────────────────────────────────────────
+node_modules/
+
+# ── Next.js ──────────────────────────────────────────────
+.next/
+out/
+
+# ── Vite / Build outputs ─────────────────────────────────
+dist/
+build/
+
+# ── Environment files ────────────────────────────────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ── OS / Editor ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# ── Logs ─────────────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── Payload CMS ──────────────────────────────────────────
+cms/media/
+
+# ── Railway ──────────────────────────────────────────────
+# (railway.toml files ARE tracked intentionally)

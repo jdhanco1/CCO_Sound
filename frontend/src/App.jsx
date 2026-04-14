@@ -16,7 +16,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="mission" element={<Mission />} />
+        <Route path="about" element={<Mission />} />
         <Route path="leadership" element={<Leadership />} />
         <Route path="connect" element={<Connect />} />
         <Route path="connect/:slug" element={<Ministry />} />

@@ -1,16 +1,113 @@
 @import "tailwindcss";
 
+/* ── Brandon Grotesque ────────────────────────────────────── */
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_thin_it.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_light_it.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_reg.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_reg_it.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_med.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_med_it.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_bld.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_bld_it 2.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_blk.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Brandon Grotesque';
+  src: url('/fonts/Brandon_blk_it.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 /* ── Custom design tokens ─────────────────────────────────── */
 @theme {
-  --color-brand: #fcd607;
-  --color-brand-light: #ead637;
+  --color-brand: #FFD400;
+  --color-brand-light: #FFD400;
   --color-brand-dark: #040403;
-  --color-accent: #fcd607;
+  --color-accent: #FFD400;
   --color-accent-light: #88958d;
   --color-warm: #f5f0e8;
   --color-warm-dark: #e8dece;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Brandon Grotesque', system-ui, sans-serif;
+  --font-serif: 'Brandon Grotesque', system-ui, sans-serif;
 }
 
 /* ── Base resets ──────────────────────────────────────────── */
@@ -65,4 +162,15 @@ body {
 .animate-fade-in-up-delay-3 {
   animation: fade-in-up 0.6s ease-out 0.45s forwards;
   opacity: 0;
+}
+
+@keyframes icon-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.25); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.group:hover .icon-pop {
+  animation: icon-pop 0.4s ease-out;
 }

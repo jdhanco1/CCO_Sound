@@ -4,14 +4,17 @@ import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import StaffCard from '../components/leadership/StaffCard';
 import useContent from '../hooks/useContent';
-import { getStaff, getElders } from '../lib/api';
+import { getStaff, getElders, getPageHeroes, CMS_URL } from '../lib/api';
 import Button from '../components/common/Button';
 
 export default function Leadership() {
   const { t } = useTranslation();
   const { data: staff, loading: staffLoading } = useContent(getStaff);
   const { data: elders, loading: eldersLoading } = useContent(getElders);
+  const { data: heroes } = useContent(getPageHeroes);
 
+  const heroConfig = heroes?.leadership;
+  const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
   const staffList = staff || [];
   const elderList = elders || [];
 
@@ -21,7 +24,7 @@ export default function Leadership() {
         <title>Leadership — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={t('leadership.title')} />
+      <PageHero title={heroConfig?.heroTitle || t('leadership.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">

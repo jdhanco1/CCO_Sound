@@ -41,6 +41,11 @@ export async function getMissionPage() {
   return res;
 }
 
+export async function getPageHeroes() {
+  const res = await fetchAPI('/globals/page-heroes?depth=1');
+  return res;
+}
+
 export async function getStaff() {
   const res = await fetchAPI('/staff-members?sort=order&limit=100&depth=1');
   return res.docs.map(normalize);
