@@ -27,6 +27,7 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 # Full build output — required so npx payload migrate can run at startup
 COPY --from=build /app/package.json ./
+COPY --from=build /app/tsconfig.json ./
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/.next ./.next
 COPY --from=build /app/src ./src
