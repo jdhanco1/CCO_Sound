@@ -96,11 +96,11 @@ export default function About() {
           <div className="mb-4 text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand/60">Our Mission</p>
           </div>
-          <h2 className="mb-4 text-center font-serif text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
+          <h2 className="mb-4 text-center font-serif text-3xl font-black tracking-tight text-white sm:text-4xl md:text-6xl lg:text-7xl">
             <span className="text-brand">SEEK</span>
-            <span className="mx-3 text-brand/40">›</span>
+            <span className="mx-1 text-brand/40 sm:mx-2 md:mx-3">›</span>
             <span className="text-white">SHAPE</span>
-            <span className="mx-3 text-brand/40">›</span>
+            <span className="mx-1 text-brand/40 sm:mx-2 md:mx-3">›</span>
             <span className="text-brand">SEND</span>
           </h2>
           <p className="mx-auto mb-14 max-w-2xl text-center text-base leading-relaxed text-white/60">
