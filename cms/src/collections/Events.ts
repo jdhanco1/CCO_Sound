@@ -14,5 +14,15 @@ export const Events: CollectionConfig = {
     { name: 'image', type: 'upload', relationTo: 'media' },
     { name: 'registrationRequired', type: 'checkbox', defaultValue: false },
     { name: 'maxAttendees', type: 'number' },
+    {
+      name: 'links',
+      type: 'array',
+      label: 'Buttons / Links',
+      admin: { description: 'Optional buttons shown on the event card (e.g. Sign Up, Learn More, View Map).' },
+      fields: [
+        { name: 'label', type: 'text', required: true, label: 'Button Label' },
+        { name: 'url', type: 'text', required: true, label: 'URL (use /path for internal pages, or full https:// for external)' },
+      ],
+    },
   ],
 }

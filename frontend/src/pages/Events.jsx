@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import Button from '../components/common/Button';
+import RichText from '../components/common/RichText';
 import useContent from '../hooks/useContent';
 import { getEvents, submitEventRegistration, getPageHeroes, CMS_URL } from '../lib/api';
 
@@ -90,10 +91,28 @@ function EventItem({ event, t }) {
         <p className="text-sm font-medium text-accent">{dateStr}</p>
         <h3 className="mt-1 font-serif text-2xl font-bold text-brand-dark">{event.title}</h3>
         {event.location && <p className="mt-1 text-sm text-gray-500">{event.location}</p>}
-        {event.description && <p className="mt-3 text-sm text-gray-600">{event.description}</p>}
+        {event.description && (
+          <div className="mt-3 text-sm">
+            <RichText content={event.description} />
+          </div>
+        )}
+
+        {/* CTA link buttons added in CMS */}
+        {event.links && event.links.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {event.links.map((link, i) => {
+              const isInternal = link.url && link.url.startsWith('/');
+              return isInternal ? (
+                <Button key={i} to={link.url} variant="secondary" size="sm">{link.label}</Button>
+              ) : (
+                <Button key={i} href={link.url} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">{link.label}</Button>
+              );
+            })}
+          </div>
+        )}
 
         <div className="mt-4">
-          {!showForm ? (
+          {event.registrationRequired && (!showForm ? (
             <Button onClick={() => setShowForm(true)} variant="primary" size="sm">
               {t('events.register')}
             </Button>
