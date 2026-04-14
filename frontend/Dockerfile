@@ -42,9 +42,11 @@ FROM base AS build
 ARG VITE_CMS_URL=""
 ENV VITE_CMS_URL=$VITE_CMS_URL
 
-ENV NODE_ENV=production
-
+# Install ALL deps (including devDependencies like vite) before building.
+# NODE_ENV=production would skip devDeps, so we set it only after install.
 RUN npm ci --legacy-peer-deps
+
+ENV NODE_ENV=production
 
 COPY . .
 
