@@ -107,11 +107,13 @@ export interface Config {
     'home-page': HomePage;
     'mission-page': MissionPage;
     'page-heroes': PageHero;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
     'mission-page': MissionPageSelect<false> | MissionPageSelect<true>;
     'page-heroes': PageHeroesSelect<false> | PageHeroesSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   widgets: {
@@ -904,6 +906,30 @@ export interface PageHero {
   createdAt?: string | null;
 }
 /**
+ * Global site configuration including email notification recipients.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * Everyone listed here will receive an email whenever someone submits the Contact Us form.
+   */
+  contactNotificationEmails?:
+    | {
+        email: string;
+        /**
+         * e.g. "Pastor", "Office"
+         */
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home-page_select".
  */
@@ -1029,6 +1055,22 @@ export interface PageHeroesSelect<T extends boolean = true> {
         heroTitle?: T;
         heroSubtitle?: T;
         heroImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  contactNotificationEmails?:
+    | T
+    | {
+        email?: T;
+        label?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
