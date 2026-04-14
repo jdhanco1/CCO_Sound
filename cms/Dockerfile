@@ -25,11 +25,13 @@ FROM node:20-alpine AS prod
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-# output:standalone places a minimal server + trimmed node_modules here
-COPY --from=build /app/.next/standalone ./
-# Static assets must be copied separately (not included in standalone)
-COPY --from=build /app/.next/static ./.next/static
+# Full build output — required so npx payload migrate can run at startup
+COPY --from=build /app/package.json ./
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/src ./src
 COPY --from=build /app/public ./public
 EXPOSE 3000
-# Railway injects $PORT; Next.js standalone server.js reads it automatically
-CMD ["node", "server.js"]
+# Run pending DB migrations then start Next.js.
+# payload migrate is idempotent — already-applied migrations are skipped.
+CMD ["sh", "-c", "npx payload migrate && npx next start -p ${PORT:-3000}"]
