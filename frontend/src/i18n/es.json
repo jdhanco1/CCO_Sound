@@ -2,7 +2,7 @@
   "nav": {
     "mission": "Sobre Nosotros",
     "leadership": "Liderazgo",
-    "connect": "Conéctate",
+    "connect": "Involúcrate",
     "sermons": "Sermones",
     "blog": "Blog",
     "events": "Eventos",
@@ -51,9 +51,15 @@
     "elders_heading": "ANCIANOS"
   },
   "connect": {
-    "title": "Conéctate",
-    "intro": "Conectar con personas en grupos grandes puede ser algo difícil. Los Grupos Comunitarios están diseñados para que te conectes con otras personas a un nivel más personal y hagan vida juntos.",
-    "questions": "¿Aún tienes preguntas sobre nuestros ministerios?"
+    "title": "Involúcrate",
+    "intro": "Hay muchas formas de participar en Community Oxford — ya sea sirviendo, creciendo o simplemente perteneciendo. Encuentra tu lugar abajo.",
+    "serve_heading": "Formas de Servir",
+    "serve_sub": "Usa tus dones para servir a nuestra familia de la iglesia y a la comunidad.",
+    "groups_heading": "Grupos Comunitarios",
+    "groups_sub": "Reuniones más pequeñas donde puedes crecer en la fe y hacer vida juntos.",
+    "empty_serve": "Las áreas de servicio aparecerán aquí una vez agregadas en el CMS.",
+    "empty_groups": "Los grupos comunitarios aparecerán aquí una vez agregados en el CMS.",
+    "questions": "¿Quieres aprender más sobre cómo involucrarte?"
   },
   "sermons": {
     "title": "Sermones",

@@ -20,5 +20,15 @@ export const Ministries: CollectionConfig = {
     { name: 'meetingTime', type: 'text' },
     { name: 'location', type: 'text' },
     { name: 'order', type: 'number', defaultValue: 0 },
+    {
+      name: 'type',
+      type: 'select',
+      defaultValue: 'serve_area',
+      options: [
+        { label: 'Serve Area', value: 'serve_area' },
+        { label: 'Community Group', value: 'community_group' },
+      ],
+      admin: { description: 'Controls which section of the Get Involved page this appears in.' },
+    },
   ],
 }

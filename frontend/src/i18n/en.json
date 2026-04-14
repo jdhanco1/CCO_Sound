@@ -2,7 +2,7 @@
   "nav": {
     "mission": "About Us",
     "leadership": "Leadership",
-    "connect": "Connect",
+    "connect": "Get Involved",
     "sermons": "Sermons",
     "blog": "Blog",
     "events": "Events",
@@ -51,9 +51,15 @@
     "elders_heading": "ELDERS"
   },
   "connect": {
-    "title": "Get Connected",
-    "intro": "Connecting with people in large groups can be somewhat difficult. Community Groups are designed for you to connect with other people on a more personal level and do life together.",
-    "questions": "Still have questions about our ministries?"
+    "title": "Get Involved",
+    "intro": "There are so many ways to plug in at Community Oxford — whether you want to serve, grow, or simply belong. Find your place below.",
+    "serve_heading": "Ways to Serve",
+    "serve_sub": "Use your gifts to serve our church family and our community.",
+    "groups_heading": "Community Groups",
+    "groups_sub": "Smaller gatherings where you can grow in faith and do life together.",
+    "empty_serve": "Serve areas will appear here once added in the CMS.",
+    "empty_groups": "Community groups will appear here once added in the CMS.",
+    "questions": "Want to learn more about getting involved?"
   },
   "sermons": {
     "title": "Sermons",
