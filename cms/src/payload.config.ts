@@ -38,19 +38,24 @@ export default buildConfig({
   ],
   globals: [HomePage, MissionPage, PageHeroes, SiteSettings],
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
-  email: nodemailerAdapter({
-    defaultFromAddress: process.env.SMTP_FROM || 'noreply@communityoxford.org',
-    defaultFromName: process.env.SMTP_FROM_NAME || 'Community Church Oxford',
-    transportOptions: {
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+  // Only initialise the email adapter when SMTP credentials are present.
+  // Without this guard, Nodemailer logs a connection-timeout error on every
+  // boot when the vars aren't set yet, even though email is non-critical.
+  ...(process.env.SMTP_PASS ? {
+    email: nodemailerAdapter({
+      defaultFromAddress: process.env.SMTP_FROM || 'noreply@communityoxford.org',
+      defaultFromName: process.env.SMTP_FROM_NAME || 'Community Church Oxford',
+      transportOptions: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT) || 587,
+        secure: process.env.SMTP_SECURE === 'true',
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
       },
-    },
-  }),
+    }),
+  } : {}),
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
