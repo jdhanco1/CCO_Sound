@@ -111,44 +111,46 @@ function EventItem({ event, t }) {
           </div>
         )}
 
-        <div className="mt-4">
-          {event.registrationRequired && (!showForm ? (
-            <Button onClick={() => setShowForm(true)} variant="primary" size="sm">
-              {t('events.register')}
-            </Button>
-          ) : submitted ? (
-            <p className="text-sm font-semibold text-green-600">✓ Registered successfully!</p>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-2 space-y-3">
-              <input
-                type="text"
-                placeholder="Name"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-              />
-              <input
-                type="tel"
-                placeholder="Phone (optional)"
-                value={formData.phone}
-                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
-              />
-              <Button type="submit" variant="primary" size="sm">
-                Submit Registration
+        {event.registrationRequired && (
+          <div className="mt-4">
+            {submitted ? (
+              <p className="text-sm font-semibold text-green-600">✓ Registered successfully!</p>
+            ) : showForm ? (
+              <form onSubmit={handleSubmit} className="mt-2 space-y-3">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                />
+                <input
+                  type="tel"
+                  placeholder="Phone (optional)"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full rounded-lg border px-3 py-2 text-sm focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                />
+                <Button type="submit" variant="primary" size="sm">
+                  Submit Registration
+                </Button>
+              </form>
+            ) : (
+              <Button onClick={() => setShowForm(true)} variant="primary" size="sm">
+                {t('events.register')}
               </Button>
-            </form>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
