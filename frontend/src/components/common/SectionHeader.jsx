@@ -2,7 +2,7 @@ export default function SectionHeader({ eyebrow, title, subtitle, light = false,
   return (
     <div className={`mb-10 ${center ? 'text-center' : ''}`}>
       {eyebrow && (
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-accent/80">
           {eyebrow}
         </p>
       )}

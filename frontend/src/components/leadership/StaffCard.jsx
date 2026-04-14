@@ -21,8 +21,8 @@ export default function StaffCard({ name, title, photo, bio, email, phone }) {
             loading="lazy"
           />
         </div>
-        <h3 className="font-serif text-lg font-bold text-brand-dark">{name}</h3>
-        <p className="text-sm text-accent">{title}</p>
+        <h3 className="text-base font-bold text-brand-dark">{name}</h3>
+        <p className="text-sm font-medium text-accent">{title}</p>
         {hasBio && (
           <p className="mt-1 text-xs text-gray-400">Click to learn more</p>
         )}
