@@ -5,26 +5,40 @@ export default function StaffCard({ name, title, photo, bio, email, phone }) {
   const [open, setOpen] = useState(false);
   const hasBio = bio || email || phone;
   const imgSrc = photo?.url
-    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e3a5f&color=fff&size=300`;
+    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e3a5f&color=fff&size=600`;
 
   return (
     <>
+      {/* Card */}
       <div
-        className={`group text-center ${hasBio ? 'cursor-pointer' : ''}`}
+        className={`group relative overflow-hidden rounded-2xl shadow-lg ${
+          hasBio ? 'cursor-pointer' : ''
+        }`}
         onClick={() => hasBio && setOpen(true)}
       >
-        <div className="mx-auto mb-4 h-48 w-48 overflow-hidden rounded-full shadow-lg ring-4 ring-white transition-all duration-300 group-hover:ring-accent">
+        {/* Photo */}
+        <div className="aspect-[3/4] w-full">
           <img
             src={imgSrc}
             alt={name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
         </div>
-        <h3 className="text-base font-bold text-brand-dark">{name}</h3>
-        <p className="text-sm font-medium text-accent">{title}</p>
+
+        {/* Persistent bottom gradient + name */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-accent/95 via-accent/60 to-transparent px-4 pb-5 pt-16">
+          <h3 className="text-base font-bold leading-tight text-white">{name}</h3>
+          <p className="mt-0.5 text-xs font-semibold uppercase tracking-wider text-brand">{title}</p>
+        </div>
+
+        {/* Hover CTA — slides up */}
         {hasBio && (
-          <p className="mt-1 text-xs text-gray-400">Click to learn more</p>
+          <div className="absolute inset-x-0 bottom-0 flex translate-y-full items-end justify-center pb-4 transition-transform duration-300 group-hover:translate-y-0">
+            <span className="rounded-full bg-brand px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-dark shadow-lg">
+              Read Bio
+            </span>
+          </div>
         )}
       </div>
 
@@ -50,19 +64,19 @@ export default function StaffCard({ name, title, photo, bio, email, phone }) {
                 <img src={imgSrc} alt={name} className="h-full w-full object-cover" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-brand-dark">{name}</h3>
-              <p className="mt-1 text-sm font-medium text-accent">{title}</p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-accent">{title}</p>
             </div>
             {bio && (
               <p className="mt-6 text-sm leading-relaxed text-gray-600">{bio}</p>
             )}
             <div className="mt-4 space-y-1">
               {email && (
-                <a href={`mailto:${email}`} className="block text-sm text-brand underline hover:text-accent">
+                <a href={`mailto:${email}`} className="block text-sm text-accent underline hover:text-accent-light">
                   {email}
                 </a>
               )}
               {phone && (
-                <a href={`tel:${phone}`} className="block text-sm text-brand underline hover:text-accent">
+                <a href={`tel:${phone}`} className="block text-sm text-accent underline hover:text-accent-light">
                   {phone}
                 </a>
               )}

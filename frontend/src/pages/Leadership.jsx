@@ -36,7 +36,7 @@ export default function Leadership() {
           ) : staffList.length === 0 ? (
             <p className="mt-8 text-center text-gray-400">Staff members will appear here once added in the CMS.</p>
           ) : (
-            <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {staffList.map((s) => (
                 <StaffCard key={s.id} name={s.name} title={s.title} photo={s.photo} bio={s.bio} email={s.email} phone={s.phone} />
               ))}
@@ -55,7 +55,7 @@ export default function Leadership() {
           ) : elderList.length === 0 ? (
             <p className="mt-8 text-center text-gray-400">Elders will appear here once added in the CMS.</p>
           ) : (
-            <div className="mt-10 grid gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-10 grid gap-6 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
               {elderList.map((e) => (
                 <StaffCard key={e.id} name={e.name} title={e.title} photo={e.photo} bio={e.bio} />
               ))}
