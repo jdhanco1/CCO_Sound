@@ -13,7 +13,7 @@ export const ContactSubmissions: CollectionConfig = {
         if (operation !== 'create') return result
         try {
           // Load notification recipients from Site Settings global
-          const settings = await req.payload.findGlobal({ slug: 'site-settings' })
+          const settings = await req.payload.findGlobal({ slug: 'site-settings' as any })
           const recipients: { email: string }[] =
             (settings as any)?.contactNotificationEmails ?? []
           if (recipients.length === 0) return result
