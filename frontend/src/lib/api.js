@@ -1,6 +1,7 @@
 // VITE_CMS_URL is baked in at build time by Docker ARG / Railway env var.
 // Use || (not ??) so an empty string also falls back to the dev default.
-export const CMS_URL = import.meta.env.VITE_CMS_URL || 'http://localhost:3001';
+// Strip trailing slash so ${CMS_URL}/api/... never becomes a double-slash URL.
+export const CMS_URL = (import.meta.env.VITE_CMS_URL || 'http://localhost:3001').replace(/\/$/, '');
 
 // ── Helpers ─────────────────────────────────────────────────
 
