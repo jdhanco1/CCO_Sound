@@ -17,9 +17,9 @@ export default function Navbar() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
-  const activeClass = 'text-accent font-semibold';
+  const activeClass = 'text-brand font-semibold';
   const baseClass =
-    'transition-colors duration-200 hover:text-accent text-sm tracking-wide uppercase';
+    'transition-colors duration-200 hover:text-brand text-sm tracking-wide uppercase';
 
   return (
     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl shadow-sm">
@@ -46,7 +46,7 @@ export default function Navbar() {
             href="https://pushpay.com/pay/communityoxford"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold uppercase text-white shadow-md transition hover:bg-accent-light hover:shadow-lg"
+            className="rounded-full bg-brand px-5 py-2 text-sm font-semibold uppercase text-brand-dark shadow-md transition hover:bg-brand/80 hover:shadow-lg"
           >
             {t('nav.give')}
           </a>
@@ -83,7 +83,7 @@ export default function Navbar() {
               href="https://pushpay.com/pay/communityoxford"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 rounded-full bg-accent px-5 py-2 text-center text-sm font-semibold uppercase text-white shadow-md"
+              className="mt-2 rounded-full bg-brand px-5 py-2 text-center text-sm font-semibold uppercase text-brand-dark shadow-md"
             >
               {t('nav.give')}
             </a>

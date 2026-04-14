@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-accent">
+            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-brand">
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -48,7 +48,7 @@ export default function Footer() {
                 <li key={l.to}>
                   <Link
                     to={l.to}
-                    className="text-sm text-gray-300 transition hover:text-accent"
+                    className="text-sm text-gray-300 transition hover:text-brand"
                   >
                     {t(l.key)}
                   </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
 
           {/* Social / Give */}
           <div>
-            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-accent">
+            <h4 className="mb-3 text-sm font-sans font-semibold uppercase tracking-widest text-brand">
               Follow Us
             </h4>
             <div className="flex gap-4">
@@ -70,7 +70,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-accent"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-brand"
                 >
                   <s.icon size={16} />
                 </a>
@@ -80,7 +80,7 @@ export default function Footer() {
               href="https://pushpay.com/pay/communityoxford"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-block rounded-full bg-accent px-6 py-2.5 text-sm font-sans font-semibold uppercase text-white shadow transition hover:bg-accent-light"
+              className="mt-6 inline-block rounded-full bg-brand px-6 py-2.5 text-sm font-sans font-semibold uppercase text-brand-dark shadow transition hover:bg-brand/80"
             >
               {t('nav.give')}
             </a>

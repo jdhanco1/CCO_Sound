@@ -21,7 +21,7 @@ export default function Events() {
         <title>{t('events.title')} — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={heroConfig?.heroTitle || t('events.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
+      {heroImage && <PageHero title={heroConfig?.heroTitle} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />}
 
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4">

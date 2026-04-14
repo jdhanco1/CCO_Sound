@@ -22,7 +22,7 @@ export default function Connect() {
         <title>Connect — Community Church Oxford</title>
       </Helmet>
 
-      <PageHero title={heroConfig?.heroTitle || t('connect.title')} subtitle={heroConfig?.heroSubtitle || t('connect.intro')} backgroundImage={heroImage} />
+      {heroImage && <PageHero title={heroConfig?.heroTitle} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />}
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-4">
