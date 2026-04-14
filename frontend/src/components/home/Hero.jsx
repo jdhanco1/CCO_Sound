@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-white" />
 
       <div className="relative z-10 mx-auto px-6 text-center">
-        <h1 className="animate-fade-in-up whitespace-nowrap font-serif text-5xl font-black leading-tight tracking-wide text-white md:text-6xl lg:text-7xl">
+        <h1 className="animate-fade-in-up font-serif text-3xl font-black leading-tight tracking-wide text-white sm:text-4xl md:text-5xl lg:text-7xl">
           {heroTitle}
         </h1>
       </div>

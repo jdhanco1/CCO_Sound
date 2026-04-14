@@ -1,6 +1,6 @@
-// Empty string → relative URLs → nginx proxies to CMS in production.
-// Local dev: VITE_CMS_URL is set to http://localhost:3001 via docker-compose.
-export const CMS_URL = import.meta.env.VITE_CMS_URL ?? 'http://localhost:3001';
+// VITE_CMS_URL is baked in at build time by Docker ARG / Railway env var.
+// Use || (not ??) so an empty string also falls back to the dev default.
+export const CMS_URL = import.meta.env.VITE_CMS_URL || 'http://localhost:3001';
 
 // ── Helpers ─────────────────────────────────────────────────
 
