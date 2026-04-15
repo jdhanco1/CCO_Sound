@@ -5,7 +5,7 @@ export default function StaffCard({ name, title, photo, bio, email, phone }) {
   const [open, setOpen] = useState(false);
   const hasBio = bio || email || phone;
   const imgSrc = photo?.url
-    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=1e3a5f&color=fff&size=600`;
+    || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=5b5b5b&color=fff&size=600`;
 
   return (
     <>
