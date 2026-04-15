@@ -7,6 +7,7 @@ import logo from '../../assets/Logo.svg';
 
 const links = [
   { to: '/about', key: 'nav.mission' },
+  { to: '/missions', key: 'nav.missions' },
   { to: '/leadership', key: 'nav.leadership' },
   { to: '/connect', key: 'nav.connect' },
   { to: '/events', key: 'nav.events' },

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { HiOutlineHeart, HiOutlineUserGroup, HiOutlineKey, HiOutlineClock, HiOutlineLocationMarker } from 'react-icons/hi';
+import { HiOutlineHeart, HiOutlineUserGroup, HiOutlineKey, HiOutlineHand, HiOutlineClock, HiOutlineLocationMarker } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
 const actions = [
@@ -16,6 +16,13 @@ const actions = [
     icon: HiOutlineUserGroup,
     to: '/connect',
     external: false,
+  },
+  {
+    key: 'home.quick_prayer',
+    descKey: 'home.quick_prayer_desc',
+    icon: HiOutlineHand,
+    href: 'https://communityoxford.ccbchurch.com/goto/forms/2/responses/new',
+    external: true,
   },
   {
     key: 'home.quick_ccb',
@@ -58,7 +65,7 @@ export default function QuickActions() {
         <div className="mx-auto mb-10 h-px w-24 bg-brand-dark/20" />
 
         {/* ── Action Cards ── */}
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {actions.map((a) => {
             const Icon = a.icon;
             const content = (

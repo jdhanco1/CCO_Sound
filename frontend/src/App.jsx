@@ -10,6 +10,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
+import Missions from './pages/Missions';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Route element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<Mission />} />
+        <Route path="missions" element={<Missions />} />
         <Route path="leadership" element={<Leadership />} />
         <Route path="connect" element={<Connect />} />
         <Route path="connect/:slug" element={<Ministry />} />

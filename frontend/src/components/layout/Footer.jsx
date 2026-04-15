@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const footerLinks = [
-  { to: '/mission', key: 'nav.mission' },
+  { to: '/about', key: 'nav.mission' },
+  { to: '/missions', key: 'nav.missions' },
   { to: '/leadership', key: 'nav.leadership' },
   { to: '/connect', key: 'nav.connect' },
   { to: '/sermons', key: 'nav.sermons' },

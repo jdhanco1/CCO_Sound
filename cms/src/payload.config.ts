@@ -15,6 +15,7 @@ import { BlogPosts } from './collections/BlogPosts'
 import { Events } from './collections/Events'
 import { ContactSubmissions } from './collections/ContactSubmissions'
 import { EventRegistrations } from './collections/EventRegistrations'
+import { MissionPartners } from './collections/MissionPartners'
 import { HomePage } from './globals/HomePage'
 import { MissionPage } from './globals/MissionPage'
 import { PageHeroes } from './globals/PageHeroes'
@@ -24,6 +25,17 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  admin: {
+    components: {
+      graphics: {
+        Logo: './src/components/Logo',
+        Icon: './src/components/Icon',
+      },
+    },
+    meta: {
+      titleSuffix: ' — Community Church Oxford',
+    },
+  },
   editor: lexicalEditor(),
   collections: [
     Media,
@@ -35,6 +47,7 @@ export default buildConfig({
     Events,
     ContactSubmissions,
     EventRegistrations,
+    MissionPartners,
   ],
   globals: [HomePage, MissionPage, PageHeroes, SiteSettings],
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',

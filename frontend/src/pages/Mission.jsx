@@ -4,78 +4,32 @@ import Button from '../components/common/Button';
 import useContent from '../hooks/useContent';
 import { getMissionPage, CMS_URL } from '../lib/api';
 
-const visionItems = [
-  { bold: 'A Culturally Diverse Church', rest: ' that looks like Oxford, Lafayette County, and the University community' },
-  { bold: 'Saturated by Grace', rest: ' and characterized by love' },
-  { bold: 'Equipping Its Members', rest: ' to be ministers of the Gospel in their areas of influence' },
-  { bold: 'Caring for This Area', rest: ' and longing to see it transformed' },
-  { bold: 'Connecting Deeply', rest: ' with college students and young professionals in our community' },
-  { bold: 'A Multi-Generational Community', rest: '' },
-  { bold: 'Fostering Family-Driven Ministry', rest: '' },
-  { bold: 'Caring for Our Neighbors', rest: ' who are under-resourced, oppressed and disenfranchised' },
-  { bold: 'Leading People', rest: ' into a growing relationship with Jesus' },
-];
-
-const values = [
-  { title: 'Scripture-Centered', text: 'We hold the Bible as our ultimate authority for faith and life. Everything we believe and do is measured against God\'s Word.' },
-  { title: 'Grace-Saturated', text: 'We believe the Gospel of grace transforms everything. A culture of grace marks our relationships, leadership, and community.' },
-  { title: 'Gospel-Driven', text: 'Everything flows from the good news of Jesus Christ. The Gospel is not just how we get in — it\'s how we live every day.' },
-  { title: 'Multi-Generational', text: 'We pursue a community that spans every age and stage of life, believing the generations need and strengthen each other.' },
-  { title: 'Mission-Focused', text: 'We exist to seek, shape, and send. We are a sent people, on mission locally and globally to make disciples.' },
-  { title: 'Family-Centered', text: 'We believe the family is a God-given institution. We equip families to pursue Christ together at home and in community.' },
-];
-
 const missionCards = [
   {
     num: '01',
     labelKey: 'mission.god_seeks',
     verse: 'Luke 19:10',
     verseUrl: 'https://www.bible.com/bible/111/LUK.19.10',
-    body: (
-      <>
-        All throughout scripture we see God seeking us;{' '}
-        <a href="https://www.bible.com/bible/111/GEN.3" target="_blank" rel="noopener noreferrer" className="underline decoration-brand/60 hover:text-brand">
-          in the Garden after Adam and Eve sinned
-        </a>
-        , and more specifically,{' '}
-        <a href="https://www.bible.com/bible/111/LUK.19.10" target="_blank" rel="noopener noreferrer" className="underline decoration-brand/60 hover:text-brand">
-          Jesus Christ coming to earth
-        </a>
-        .
-      </>
-    ),
+    bodyKey: 'mission.god_seeks_text',
   },
   {
     num: '02',
     labelKey: 'mission.god_shapes',
     verse: '2 Corinthians 5:17',
     verseUrl: 'https://www.bible.com/bible/111/2CO.5.17',
-    body: (
-      <>
-        When we choose to follow Christ we are shaped by him. As Paul says in{' '}
-        <a href="https://www.bible.com/bible/111/2CO.5.17" target="_blank" rel="noopener noreferrer" className="underline decoration-brand/60 hover:text-brand">
-          2 Corinthians
-        </a>{' '}
-        we become &ldquo;a new creation.&rdquo; We are like clay in the hands of the Father as he molds and shapes us into his disciples.
-      </>
-    ),
+    bodyKey: 'mission.god_shapes_text',
   },
   {
     num: '03',
     labelKey: 'mission.god_sends',
     verse: 'Isaiah 6:8',
     verseUrl: 'https://www.bible.com/bible/111/ISA.6.8',
-    body: (
-      <>
-        God sends us out into the world to proclaim and preach the Gospel, and we should respond with the same heart as{' '}
-        <a href="https://www.bible.com/bible/111/ISA.6.8" target="_blank" rel="noopener noreferrer" className="underline decoration-brand/60 hover:text-brand">
-          Isaiah saying, &ldquo;Here I am, send me&rdquo;
-        </a>
-        .
-      </>
-    ),
+    bodyKey: 'mission.god_sends_text',
   },
 ];
+
+const VISION_COUNT = 9;
+const VALUE_COUNT = 6;
 
 export default function About() {
   const { t } = useTranslation();
@@ -84,17 +38,29 @@ export default function About() {
   const visionImage1 = cmsData?.visionImages?.visionImage1?.url ? `${CMS_URL}${cmsData.visionImages.visionImage1.url}` : null;
   const visionImage2 = cmsData?.visionImages?.visionImage2?.url ? `${CMS_URL}${cmsData.visionImages.visionImage2.url}` : null;
 
+  // Build vision items from i18n keys
+  const visionItems = Array.from({ length: VISION_COUNT }, (_, i) => ({
+    bold: t(`mission.vision_${i + 1}_bold`),
+    rest: t(`mission.vision_${i + 1}_rest`),
+  }));
+
+  // Build values from i18n keys
+  const values = Array.from({ length: VALUE_COUNT }, (_, i) => ({
+    title: t(`mission.value_${i + 1}_title`),
+    text: t(`mission.value_${i + 1}_text`),
+  }));
+
   return (
     <>
       <Helmet>
-        <title>About Us — Community Church Oxford</title>
+        <title>{t('nav.mission')} — Community Church Oxford</title>
       </Helmet>
 
       {/* ── MISSION ── */}
       <section className="bg-brand-dark py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-4 text-center">
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand/60">Our Mission</p>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand/60">{t('mission.title')}</p>
           </div>
           <h2 className="mb-4 text-center font-serif text-3xl font-black tracking-tight text-white sm:text-4xl md:text-6xl lg:text-7xl">
             <span className="text-brand">SEEK</span>
@@ -123,7 +89,7 @@ export default function About() {
                     {item.verse} ↗
                   </span>
                 </a>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.body}</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{t(item.bodyKey)}</p>
               </div>
             ))}
           </div>
@@ -155,12 +121,12 @@ export default function About() {
 
             {/* Right: vision content */}
             <div className="lg:flex-1">
-              <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-brand">Our Vision</p>
+              <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-brand">{t('mission.vision_eyebrow')}</p>
               <h2 className="mb-3 font-serif text-5xl font-black uppercase tracking-tight text-brand-dark md:text-6xl">
-                Vision
+                {t('mission.vision_title')}
               </h2>
               <p className="mb-8 text-base font-bold uppercase tracking-wider text-gray-600">
-                We believe God has called us to be:
+                {t('mission.vision_intro')}
               </p>
               <ul className="space-y-3">
                 {visionItems.map((item, i) => (
@@ -182,12 +148,12 @@ export default function About() {
       <section className="bg-warm py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-12 text-center">
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-brand">What We Believe</p>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.3em] text-brand">{t('mission.values_eyebrow')}</p>
             <h2 className="mb-4 font-serif text-4xl font-black uppercase tracking-tight text-brand-dark md:text-5xl">
-              Our Values
+              {t('mission.values_title')}
             </h2>
             <p className="mx-auto max-w-2xl text-base text-gray-600">
-              These core values shape the culture of Community Church Oxford — how we worship, disciple, and serve together.
+              {t('mission.values_intro')}
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -205,12 +171,12 @@ export default function About() {
       {/* ── ESSENTIALS CTA ── */}
       <section className="bg-brand py-16">
         <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="mb-4 font-serif text-3xl font-bold text-brand-dark md:text-4xl">Want to Go Deeper?</h2>
+          <h2 className="mb-4 font-serif text-3xl font-bold text-brand-dark md:text-4xl">{t('mission.essentials_heading')}</h2>
           <p className="mb-8 text-lg font-medium text-brand-dark/80">
             {t('mission.essentials_cta')}
           </p>
           <Button variant="primary" href="https://communityoxford.ccbchurch.com/form_response.php?id=23">
-            Register for Essentials
+            {t('mission.essentials_button')}
           </Button>
         </div>
       </section>
