@@ -25,10 +25,37 @@ export const Ministries: CollectionConfig = {
       type: 'select',
       defaultValue: 'serve_area',
       options: [
+        { label: 'Ministry Card (Get Involved grid)', value: 'ministry_card' },
         { label: 'Serve Area', value: 'serve_area' },
         { label: 'Community Group', value: 'community_group' },
       ],
       admin: { description: 'Controls which section of the Get Involved page this appears in.' },
+    },
+    {
+      name: 'tagline',
+      type: 'text',
+      admin: { description: 'Short subtitle shown on the card and in the modal (e.g. "Do life together")' },
+    },
+    {
+      name: 'externalUrl',
+      type: 'text',
+      admin: { description: 'If set, clicking the card opens this URL in a new tab instead of a modal (e.g. ChurchBuilder volunteer signup link).' },
+    },
+    {
+      name: 'accentColor',
+      type: 'select',
+      defaultValue: 'accent',
+      options: [
+        { label: 'Gold (brand)', value: 'brand' },
+        { label: 'Blue (accent)', value: 'accent' },
+        { label: 'Sky Blue', value: 'sky' },
+        { label: 'Purple', value: 'purple' },
+        { label: 'Indigo', value: 'indigo' },
+        { label: 'Amber', value: 'amber' },
+        { label: 'Teal', value: 'teal' },
+        { label: 'Rose', value: 'rose' },
+      ],
+      admin: { description: 'Accent color for the card top bar and modal.' },
     },
   ],
 }

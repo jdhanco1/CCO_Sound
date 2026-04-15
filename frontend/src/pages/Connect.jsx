@@ -5,78 +5,21 @@ import { HiX } from 'react-icons/hi';
 import PageHero from '../components/common/PageHero';
 import SectionHeader from '../components/common/SectionHeader';
 import MinistryCard from '../components/connect/MinistryCard';
-import Button from '../components/common/Button';
+import RichText from '../components/common/RichText';
 import useContent from '../hooks/useContent';
 import { getMinistries, getPageHeroes, CMS_URL, submitContactForm } from '../lib/api';
 
-// ── Static ministry areas ──────────────────────────────────────────────────
-const MINISTRY_AREAS = [
-  {
-    id: 'volunteer',
-    title: 'Volunteer Signup',
-    tagline: 'Put your faith to work',
-    description:
-      `Ready to serve? Sign up to volunteer at Community Oxford. Whether it's greeting on Sunday mornings, helping with setup, or serving in kids ministry, we'd love to have you.`,
-    accent: 'bg-brand',
-    externalUrl: 'https://churchbuilder.example.com/volunteer', // ← replace with real ChurchBuilder URL
-  },
-  {
-    id: 'community-groups',
-    title: 'Community Groups',
-    tagline: 'Do life together',
-    description:
-      `Community Groups are smaller gatherings of people who meet throughout the week to study scripture, pray together, and build real relationships. There's a group for every stage of life.`,
-    accent: 'bg-accent',
-  },
-  {
-    id: 'cco-kids',
-    title: 'Community Kids',
-    tagline: 'Rooted in faith from day one',
-    description:
-      'CCO Kids provides a safe, fun, and Gospel-centered environment for children from birth through 5th grade every Sunday morning. We partner with parents to help kids know and love Jesus.',
-    accent: 'bg-sky-600',
-  },
-  {
-    id: 'cco-students',
-    title: 'CCO Students',
-    tagline: 'Middle & high school ministry',
-    description:
-      'CCO Students is a community for 6th–12th graders where teenagers can ask hard questions, build real friendships, and discover what it means to follow Jesus in everyday life.',
-    accent: 'bg-purple-600',
-  },
-  {
-    id: 'college',
-    title: 'College',
-    tagline: 'Faith beyond high school',
-    description:
-      'Our college ministry exists to help college students put down roots in a local church, pursue community, and grow as disciples during one of the most formative seasons of life.',
-    accent: 'bg-indigo-600',
-  },
-  {
-    id: 'sunday-serve',
-    title: 'Sunday Serve Teams',
-    tagline: 'Make Sunday happen',
-    description:
-      'From worship and tech to hospitality and kids, our Sunday Serve Teams are the hands and feet that make each Sunday morning possible. Join a team and serve the body.',
-    accent: 'bg-amber-600',
-  },
-  {
-    id: 'mens',
-    title: "Men's Ministry",
-    tagline: 'Iron sharpening iron',
-    description:
-      "Men's Ministry at Community Oxford creates space for men to grow spiritually, build accountability, and pursue Christ together through regular gatherings, Bible studies, and events.",
-    accent: 'bg-teal-700',
-  },
-  {
-    id: 'womens',
-    title: "Women's Ministry",
-    tagline: 'Community. Growth. Grace.',
-    description:
-      "Women's Ministry exists to help women know God more deeply and love each other more fully. Through Bible studies, events, and meaningful relationships, we grow together in faith.",
-    accent: 'bg-rose-600',
-  },
-];
+// Maps CMS accentColor value → Tailwind bg class
+const ACCENT_MAP = {
+  brand:   'bg-brand',
+  accent:  'bg-accent',
+  sky:     'bg-sky-600',
+  purple:  'bg-purple-600',
+  indigo:  'bg-indigo-600',
+  amber:   'bg-amber-600',
+  teal:    'bg-teal-700',
+  rose:    'bg-rose-600',
+};
 
 export default function Connect() {
   const { t } = useTranslation();
@@ -96,8 +39,8 @@ export default function Connect() {
   const heroImage = heroConfig?.heroImage?.url ? `${CMS_URL}${heroConfig.heroImage.url}` : undefined;
   const list = ministries || [];
 
-  const serveAreas = list.filter((m) => !m.type || m.type === 'serve_area');
-  const groups = list.filter((m) => m.type === 'community_group');
+  const ministryCards = list.filter((m) => m.type === 'ministry_card');
+  const serveAreas    = list.filter((m) => !m.type || m.type === 'serve_area');
 
   const handleContactSubmit = async (e) => {
     e.preventDefault();
@@ -114,28 +57,6 @@ export default function Connect() {
       <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-accent border-t-transparent" />
     </div>
   );
-
-  const MinistryGrid = ({ items, emptyKey }) =>
-    items.length === 0 ? (
-      <div className="rounded-2xl bg-warm p-10 text-center">
-        <p className="text-gray-500">{t(emptyKey)}</p>
-      </div>
-    ) : (
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {items.map((m) => (
-          <MinistryCard
-            key={m.id}
-            slug={m.slug}
-            name={m.name}
-            summary={m.summary}
-            image={m.image}
-            meetingTime={m.meetingTime}
-            location={m.location}
-            leader={m.leader}
-          />
-        ))}
-      </div>
-    );
 
   return (
     <>
@@ -158,7 +79,6 @@ export default function Connect() {
           <h1 className="font-serif text-4xl font-bold md:text-5xl">{t('connect.title')}</h1>
           <p className="mt-4 text-lg leading-relaxed text-gray-300">{t('connect.intro')}</p>
 
-          {/* Single "Learn More" button */}
           {!showForm && !submitted && (
             <div className="mt-8">
               <button
@@ -170,7 +90,6 @@ export default function Connect() {
             </div>
           )}
 
-          {/* Inline contact form */}
           {(showForm || submitted) && (
             <div className="mx-auto mt-8 max-w-lg rounded-2xl border border-white/20 bg-white/10 p-6 text-left backdrop-blur-sm">
               {submitted ? (
@@ -191,9 +110,7 @@ export default function Connect() {
                   </div>
                   <form onSubmit={handleContactSubmit} className="space-y-4">
                     <div>
-                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
-                        Your Name
-                      </label>
+                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">Your Name</label>
                       <input
                         type="text"
                         required
@@ -204,9 +121,7 @@ export default function Connect() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
-                        Your Email
-                      </label>
+                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">Your Email</label>
                       <input
                         type="email"
                         required
@@ -217,9 +132,7 @@ export default function Connect() {
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
-                        Message
-                      </label>
+                      <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">Message</label>
                       <textarea
                         required
                         rows={4}
@@ -230,9 +143,7 @@ export default function Connect() {
                       />
                     </div>
                     {contactError && (
-                      <p className="text-sm text-red-400">
-                        Something went wrong. Please try again or call us at 662.380.5014.
-                      </p>
+                      <p className="text-sm text-red-400">Something went wrong. Please try again or call us at 662.380.5014.</p>
                     )}
                     <button
                       type="submit"
@@ -252,97 +163,164 @@ export default function Connect() {
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-4">
           <SectionHeader eyebrow="Get Connected" title="Ways to Get Involved" subtitle="Find your place at Community Oxford." />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {MINISTRY_AREAS.map((area) => (
-              <button
-                key={area.id}
-                onClick={() => {
-                  if (area.externalUrl) {
-                    window.open(area.externalUrl, '_blank', 'noopener,noreferrer');
-                  } else {
-                    setActiveCard(area);
-                  }
-                }}
-                className="group flex flex-col overflow-hidden rounded-2xl bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className={`h-2 w-full ${area.accent}`} />
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-serif text-lg font-bold text-brand-dark">{area.title}</h3>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-400">{area.tagline}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-3">{area.description}</p>
-                  <p className="mt-4 text-xs font-bold uppercase tracking-wide text-accent transition group-hover:text-brand-dark">
-                    {area.externalUrl ? 'Sign Up →' : 'Learn More →'}
-                  </p>
-                </div>
-              </button>
-            ))}
-          </div>
+          {loading ? (
+            <Spinner />
+          ) : ministryCards.length === 0 ? (
+            <p className="mt-10 text-center text-gray-400">Ministry areas will appear here once added in the CMS with the "Ministry Card" type.</p>
+          ) : (
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {ministryCards.map((area) => {
+                const accentClass = ACCENT_MAP[area.accentColor] || 'bg-accent';
+                return (
+                  <button
+                    key={area.id}
+                    onClick={() => {
+                      if (area.externalUrl) {
+                        window.open(area.externalUrl, '_blank', 'noopener,noreferrer');
+                      } else {
+                        setActiveCard({ ...area, accentClass });
+                      }
+                    }}
+                    className="group flex flex-col overflow-hidden rounded-2xl bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <div className={`h-2 w-full ${accentClass}`} />
+                    <div className="flex flex-1 flex-col p-6">
+                      <h3 className="font-serif text-lg font-bold text-brand-dark">{area.name}</h3>
+                      {area.tagline && (
+                        <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-400">{area.tagline}</p>
+                      )}
+                      {area.summary && (
+                        <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600 line-clamp-3">{area.summary}</p>
+                      )}
+                      <p className="mt-4 text-xs font-bold uppercase tracking-wide text-accent transition group-hover:text-brand-dark">
+                        {area.externalUrl ? 'Sign Up →' : 'Learn More →'}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ── Serve Areas (CMS) ─────────────────────────────────────────────── */}
-      <section id="serve" className="bg-warm py-20">
+      {/* ── Transition into detailed ministry pages ───────────────────────── */}
+      <div className="bg-warm">
+        <div className="mx-auto max-w-6xl px-4 py-4">
+          <div className="h-px w-full bg-gray-200" />
+        </div>
+      </div>
+
+      {/* ── Serve Areas (CMS detail cards) ───────────────────────────────── */}
+      <section id="serve" className="bg-warm pb-20 pt-12">
         <div className="mx-auto max-w-6xl px-4">
           <SectionHeader
-            eyebrow="Serve"
+            eyebrow="Explore Our Ministries"
             title={t('connect.serve_heading')}
             subtitle={t('connect.serve_sub')}
           />
-          {loading ? <Spinner /> : <MinistryGrid items={serveAreas} emptyKey="connect.empty_serve" />}
+          {loading ? (
+            <Spinner />
+          ) : serveAreas.length === 0 ? (
+            <div className="rounded-2xl bg-white p-10 text-center">
+              <p className="text-gray-500">{t('connect.empty_serve')}</p>
+            </div>
+          ) : (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {serveAreas.map((m) => (
+                <MinistryCard
+                  key={m.id}
+                  slug={m.slug}
+                  name={m.name}
+                  summary={m.summary}
+                  image={m.image}
+                  meetingTime={m.meetingTime}
+                  location={m.location}
+                  leader={m.leader}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* ── Community Groups (CMS) ────────────────────────────────────────── */}
-      <section id="groups" className="py-20">
-        <div className="mx-auto max-w-6xl px-4">
-          <SectionHeader
-            eyebrow="Grow"
-            title={t('connect.groups_heading')}
-            subtitle={t('connect.groups_sub')}
-          />
-          {loading ? <Spinner /> : <MinistryGrid items={groups} emptyKey="connect.empty_groups" />}
-        </div>
-      </section>
-
-      {/* ── CTA ──────────────────────────────────────────────────────────── */}
-      <section className="bg-accent py-16 text-center text-white">
-        <div className="mx-auto max-w-xl px-4">
-          <p className="font-serif text-2xl font-bold">{t('connect.questions')}</p>
-          <div className="mt-6">
-            <Button to="/contact" variant="white" size="lg">
-              {t('nav.contact')}
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Ministry modal ─────────────────────────────────────────────────── */}
+      {/* ── Ministry modal ───────────────────────────────────────────────── */}
       {activeCard && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
           onClick={() => setActiveCard(null)}
         >
           <div
-            className="relative w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Accent bar */}
-            <div className={`h-2 w-full ${activeCard.accent}`} />
-            <div className="p-8">
+            {/* Image or accent bar */}
+            {activeCard.image?.url ? (
+              <div className="relative h-52 w-full shrink-0 overflow-hidden">
+                <img
+                  src={activeCard.image.url}
+                  alt={activeCard.image.alt || activeCard.name}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className={`absolute bottom-0 left-0 h-1.5 w-full ${activeCard.accentClass}`} />
+              </div>
+            ) : (
+              <div className={`h-2 w-full shrink-0 ${activeCard.accentClass}`} />
+            )}
+
+            {/* Scrollable body */}
+            <div className="overflow-y-auto p-8">
               <button
                 onClick={() => setActiveCard(null)}
-                className="absolute right-4 top-6 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                className="absolute right-4 top-4 rounded-full bg-white/80 p-1.5 text-gray-600 shadow hover:bg-white hover:text-gray-900"
                 aria-label="Close"
               >
-                <HiX size={20} />
+                <HiX size={18} />
               </button>
-              <h3 className="font-serif text-2xl font-bold text-brand-dark">{activeCard.title}</h3>
-              <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-accent">{activeCard.tagline}</p>
-              <p className="mt-5 text-sm leading-relaxed text-gray-600">{activeCard.description}</p>
+
+              <h3 className="font-serif text-2xl font-bold text-brand-dark">{activeCard.name}</h3>
+              {activeCard.tagline && (
+                <p className="mt-1 text-sm font-semibold uppercase tracking-wider text-accent">{activeCard.tagline}</p>
+              )}
+
+              {/* Rich text description */}
+              {activeCard.description ? (
+                <div className="mt-5">
+                  <RichText content={activeCard.description} />
+                </div>
+              ) : activeCard.summary ? (
+                <p className="mt-5 text-sm leading-relaxed text-gray-600">{activeCard.summary}</p>
+              ) : null}
+
+              {/* Contact email */}
+              {activeCard.contactEmail && (
+                <a
+                  href={`mailto:${activeCard.contactEmail}`}
+                  className="mt-4 block text-sm font-medium text-accent underline hover:text-accent/80"
+                >
+                  {activeCard.contactEmail}
+                </a>
+              )}
+
               <div className="mt-6 flex gap-3">
-                <Button to="/contact" variant="primary" size="md">
-                  Get in Touch
-                </Button>
+                {activeCard.externalUrl ? (
+                  <a
+                    href={activeCard.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-full bg-gray-800 px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow-md transition hover:bg-gray-700"
+                  >
+                    Sign Up
+                  </a>
+                ) : (
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-full bg-gray-800 px-6 py-2.5 text-sm font-semibold uppercase tracking-wide text-white shadow-md transition hover:bg-gray-700"
+                  >
+                    Get in Touch
+                  </a>
+                )}
                 <button
                   onClick={() => setActiveCard(null)}
                   className="rounded-full border-2 border-gray-300 px-5 py-2 text-sm font-semibold text-gray-600 transition hover:bg-gray-100"
