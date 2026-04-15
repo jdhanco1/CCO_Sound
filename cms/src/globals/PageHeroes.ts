@@ -18,5 +18,6 @@ export const PageHeroes: GlobalConfig = {
     { name: 'connect', type: 'group', label: 'Connect Page', fields: heroFields },
     { name: 'blog', type: 'group', label: 'Blog Page', fields: heroFields },
     { name: 'mission', type: 'group', label: 'Mission Page', fields: heroFields },
+    { name: 'store', type: 'group', label: 'Store Page', fields: heroFields },
   ],
 }

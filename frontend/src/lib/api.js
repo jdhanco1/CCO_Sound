@@ -67,6 +67,11 @@ export async function getMissionPartners() {
   return res.docs.map(normalize);
 }
 
+export async function getMerchItems() {
+  const res = await fetchAPI('/merch-items?where[available][equals]=true&sort=order&limit=100&depth=1');
+  return res.docs.map(normalize);
+}
+
 export async function getMinistry(slug) {
   const res = await fetchAPI(`/ministries?where[slug][equals]=${encodeURIComponent(slug)}&depth=1&limit=1`);
   const doc = res.docs?.[0];

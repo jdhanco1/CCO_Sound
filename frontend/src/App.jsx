@@ -11,6 +11,7 @@ import BlogPost from './pages/BlogPost';
 import Events from './pages/Events';
 import Contact from './pages/Contact';
 import Missions from './pages/Missions';
+import Store from './pages/Store';
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="blog/:slug" element={<BlogPost />} />
         <Route path="events" element={<Events />} />
         <Route path="contact" element={<Contact />} />
+        <Route path="store" element={<Store />} />
       </Route>
     </Routes>
   );

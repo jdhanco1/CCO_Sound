@@ -16,6 +16,7 @@ import { Events } from './collections/Events'
 import { ContactSubmissions } from './collections/ContactSubmissions'
 import { EventRegistrations } from './collections/EventRegistrations'
 import { MissionPartners } from './collections/MissionPartners'
+import { MerchItems } from './collections/MerchItems'
 import { HomePage } from './globals/HomePage'
 import { MissionPage } from './globals/MissionPage'
 import { PageHeroes } from './globals/PageHeroes'
@@ -48,6 +49,7 @@ export default buildConfig({
     ContactSubmissions,
     EventRegistrations,
     MissionPartners,
+    MerchItems,
   ],
   globals: [HomePage, MissionPage, PageHeroes, SiteSettings],
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',

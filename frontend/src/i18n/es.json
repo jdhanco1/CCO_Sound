@@ -8,7 +8,26 @@
     "blog": "Blog",
     "events": "Eventos",
     "contact": "Contáctenos",
+    "store": "Tienda",
     "give": "Dar"
+  },
+  "store": {
+    "title": "Tienda",
+    "intro": "¡Representa a Community Church Oxford! Todas las compras son procesadas por nuestro socio — solo haz clic y compra.",
+    "featured_eyebrow": "Destacados",
+    "featured_heading": "Artículos Destacados",
+    "all_eyebrow": "Mercancía",
+    "all_heading": "Todos los Artículos",
+    "all_sub": "Explora nuestra colección completa de productos CCO.",
+    "buy_now": "Comprar",
+    "loading": "Cargando productos…",
+    "empty": "No hay artículos disponibles. ¡Vuelve pronto!",
+    "cat_all": "Todos",
+    "cat_apparel": "Ropa",
+    "cat_accessories": "Accesorios",
+    "cat_drinkware": "Bebidas",
+    "cat_stickers": "Calcomanías",
+    "cat_other": "Otros"
   },
   "hero": {
     "tagline": "",

@@ -8,7 +8,26 @@
     "blog": "Blog",
     "events": "Events",
     "contact": "Contact Us",
+    "store": "Store",
     "give": "Give"
+  },
+  "store": {
+    "title": "Store",
+    "intro": "Rep Community Church Oxford! All purchases are fulfilled by our merch partner — just click and shop.",
+    "featured_eyebrow": "Top Picks",
+    "featured_heading": "Featured Items",
+    "all_eyebrow": "Merch",
+    "all_heading": "All Items",
+    "all_sub": "Browse our full collection of CCO gear.",
+    "buy_now": "Shop",
+    "loading": "Loading merch…",
+    "empty": "No items available right now. Check back soon!",
+    "cat_all": "All",
+    "cat_apparel": "Apparel",
+    "cat_accessories": "Accessories",
+    "cat_drinkware": "Drinkware",
+    "cat_stickers": "Stickers & Decals",
+    "cat_other": "Other"
   },
   "hero": {
     "tagline": "",

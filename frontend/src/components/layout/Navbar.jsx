@@ -12,6 +12,7 @@ const links = [
   { to: '/connect', key: 'nav.connect' },
   { to: '/events', key: 'nav.events' },
   { to: '/contact', key: 'nav.contact' },
+  { to: '/store', key: 'nav.store' },
 ];
 
 export default function Navbar() {
