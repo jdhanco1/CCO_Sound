@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { HiMenu, HiX } from 'react-icons/hi';
 import LanguageToggle from '../common/LanguageToggle';
 import logo from '../../assets/Logo.svg';
+import textLogo from '../../assets/textLogo.png';
 
 const links = [
   { to: '/about', key: 'nav.mission' },
@@ -27,8 +28,9 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo / Church name */}
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="Community Church Oxford" className="h-20 w-auto" />
+          <img src={textLogo} alt="Community Church Oxford" className="h-12 w-auto hidden sm:block" />
         </Link>
 
         {/* Desktop nav */}
