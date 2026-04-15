@@ -27,7 +27,7 @@ export default function StaffCard({ name, title, photo, bio, email, phone }) {
         </div>
 
         {/* Persistent bottom gradient + name */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-accent/95 via-accent/60 to-transparent px-4 pb-5 pt-16">
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#5b5b5b]/95 via-[#5b5b5b]/60 to-transparent px-4 pb-5 pt-16">
           <h3 className="text-base font-bold leading-tight text-white">{name}</h3>
           <p className="mt-0.5 text-xs font-semibold uppercase tracking-wider text-brand">{title}</p>
         </div>
