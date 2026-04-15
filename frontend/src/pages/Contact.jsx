@@ -35,13 +35,22 @@ export default function Contact() {
 
       <PageHero title={heroConfig?.heroTitle || t('contact.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
 
-      <section className="py-16">
+      {/* Intro banner */}
+      <section className="bg-brand-dark py-16 text-center text-white">
+        <div className="mx-auto max-w-3xl px-4">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">Community Oxford</p>
+          <h1 className="font-serif text-4xl font-bold md:text-5xl">{t('contact.title')}</h1>
+          <p className="mt-4 text-lg leading-relaxed text-gray-300">{t('contact.subtitle', { defaultValue: 'We\'d love to hear from you. Reach out with any questions or just to say hello.' })}</p>
+        </div>
+      </section>
+
+      <section className="bg-gray-50 py-20">
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid gap-12 lg:grid-cols-2">
             {/* Info cards */}
             <div className="space-y-8">
               {/* Sunday */}
-              <div className="rounded-2xl bg-warm p-8">
+              <div className="rounded-2xl bg-white p-8 shadow-md">
                 <h3 className="mb-4 font-serif text-xl font-bold text-brand-dark">
                   {t('contact.sunday_heading')}
                 </h3>
@@ -69,7 +78,7 @@ export default function Contact() {
               </div>
 
               {/* Office */}
-              <div className="rounded-2xl bg-warm p-8">
+              <div className="rounded-2xl bg-white p-8 shadow-md">
                 <h3 className="mb-4 font-serif text-xl font-bold text-brand-dark">
                   {t('contact.office_heading')}
                 </h3>
@@ -102,21 +111,21 @@ export default function Contact() {
             </div>
 
             {/* Contact form */}
-            <div className="rounded-2xl bg-white p-8 shadow-lg">
-              <h3 className="mb-6 font-serif text-2xl font-bold text-brand-dark">
+            <div className="rounded-2xl bg-brand-dark p-8 shadow-lg">
+              <h3 className="mb-6 font-serif text-2xl font-bold text-white">
                 {t('contact.action_request')}
               </h3>
 
               {submitted ? (
-                <div className="rounded-xl bg-green-50 p-6 text-center">
-                  <p className="font-semibold text-green-700">
+                <div className="rounded-xl bg-brand/20 p-6 text-center">
+                  <p className="font-semibold text-brand">
                     {t('contact.form_success')}
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                    <label className="mb-1 block text-sm font-medium text-gray-300">
                       {t('contact.form_name')}
                     </label>
                     <input
@@ -124,11 +133,11 @@ export default function Contact() {
                       required
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                      className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-gray-400 transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                    <label className="mb-1 block text-sm font-medium text-gray-300">
                       {t('contact.form_email')}
                     </label>
                     <input
@@ -136,11 +145,11 @@ export default function Contact() {
                       required
                       value={form.email}
                       onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                      className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-gray-400 transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-sm font-medium text-gray-700">
+                    <label className="mb-1 block text-sm font-medium text-gray-300">
                       {t('contact.form_message')}
                     </label>
                     <textarea
@@ -148,7 +157,7 @@ export default function Contact() {
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
+                      className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-gray-400 transition focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30"
                     />
                   </div>
 
