@@ -36,6 +36,11 @@ export default function Store() {
     <>
       <Helmet>
         <title>{t('store.title')} — Community Church Oxford</title>
+        <meta name="description" content="Shop Community Church Oxford merchandise — apparel, accessories, and more to represent your church family in Oxford, MS." />
+        <link rel="canonical" href="https://communityoxford.com/store" />
+        <meta property="og:title" content={`${t('store.title')} — Community Church Oxford`} />
+        <meta property="og:description" content="Community Church Oxford merchandise — apparel, accessories, and more." />
+        <meta property="og:url" content="https://communityoxford.com/store" />
       </Helmet>
 
       {heroImage && (
@@ -52,9 +57,9 @@ export default function Store() {
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
             Community Oxford
           </p>
-          <h1 className="font-serif text-4xl font-bold md:text-5xl">
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">
             {t('store.title')}
-          </h1>
+          </h2>
           <p className="mt-4 text-lg leading-relaxed text-gray-300">
             {t('store.intro')}
           </p>

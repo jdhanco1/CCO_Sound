@@ -41,6 +41,25 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.title} — Community Church Oxford</title>
         {post.excerpt && <meta name="description" content={post.excerpt} />}
+        <link rel="canonical" href={`https://communityoxford.com/blog/${post.slug}`} />
+        <meta property="og:title" content={`${post.title} — Community Church Oxford`} />
+        {post.excerpt && <meta property="og:description" content={post.excerpt} />}
+        <meta property="og:url" content={`https://communityoxford.com/blog/${post.slug}`} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": post.title,
+          "description": post.excerpt || '',
+          "url": `https://communityoxford.com/blog/${post.slug}`,
+          "datePublished": post.publishedDate || undefined,
+          "author": { "@type": "Organization", "name": "Community Church Oxford" },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Community Church Oxford",
+            "logo": { "@type": "ImageObject", "url": "https://communityoxford.com/SEEKSHAPESEND.png" }
+          }
+        })}</script>
       </Helmet>
 
       <article className="mx-auto max-w-3xl px-4 py-12">

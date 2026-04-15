@@ -58,7 +58,7 @@ export default buildConfig({
   // boot when the vars aren't set yet, even though email is non-critical.
   ...(process.env.SMTP_PASS ? {
     email: nodemailerAdapter({
-      defaultFromAddress: process.env.SMTP_FROM || 'noreply@communityoxford.org',
+      defaultFromAddress: process.env.SMTP_FROM || 'noreply@communityoxford.com',
       defaultFromName: process.env.SMTP_FROM_NAME || 'Community Church Oxford',
       transportOptions: {
         host: process.env.SMTP_HOST,

@@ -20,6 +20,32 @@ export default function Events() {
     <>
       <Helmet>
         <title>{t('events.title')} — Community Church Oxford</title>
+        <meta name="description" content="Upcoming events and gatherings at Community Church Oxford in Oxford, MS. Join us for worship, fellowship, and community outreach." />
+        <link rel="canonical" href="https://communityoxford.com/events" />
+        <meta property="og:title" content={`${t('events.title')} — Community Church Oxford`} />
+        <meta property="og:description" content="Upcoming events at Community Church Oxford in Oxford, MS." />
+        <meta property="og:url" content="https://communityoxford.com/events" />
+        {events && events.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": events.slice(0, 10).map((evt, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "item": {
+                "@type": "Event",
+                "name": evt.title,
+                "startDate": evt.date,
+                "location": {
+                  "@type": "Place",
+                  "name": evt.location || "Community Church Oxford",
+                  "address": "68 Highway 334, Oxford, MS 38655"
+                },
+                "organizer": { "@type": "Organization", "name": "Community Church Oxford" }
+              }
+            }))
+          })}</script>
+        )}
       </Helmet>
 
       {heroImage && <PageHero title={heroConfig?.heroTitle} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />}

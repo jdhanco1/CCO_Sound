@@ -21,6 +21,11 @@ export default function Sermons() {
     <>
       <Helmet>
         <title>Sermons — Community Church Oxford</title>
+        <meta name="description" content="Watch and listen to recent sermons from Community Church Oxford in Oxford, MS. Growing in faith through Biblical teaching." />
+        <link rel="canonical" href="https://communityoxford.com/sermons" />
+        <meta property="og:title" content="Sermons — Community Church Oxford" />
+        <meta property="og:description" content="Watch and listen to sermons from Community Church Oxford in Oxford, MS." />
+        <meta property="og:url" content="https://communityoxford.com/sermons" />
       </Helmet>
 
       <PageHero title={heroConfig?.heroTitle || t('sermons.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />

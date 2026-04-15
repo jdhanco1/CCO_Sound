@@ -1,0 +1,5 @@
+# Community Church Oxford — https://communityoxford.com
+User-agent: *
+Allow: /
+
+Sitemap: https://communityoxford.com/sitemap.xml

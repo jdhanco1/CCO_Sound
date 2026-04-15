@@ -35,6 +35,11 @@ export default function Ministry() {
     <>
       <Helmet>
         <title>{ministry.name} — Community Church Oxford</title>
+        <meta name="description" content={`Learn about the ${ministry.name} ministry at Community Church Oxford in Oxford, MS.`} />
+        <link rel="canonical" href={`https://communityoxford.com/ministry/${ministry.slug || ''}`} />
+        <meta property="og:title" content={`${ministry.name} — Community Church Oxford`} />
+        <meta property="og:description" content={`${ministry.name} ministry at Community Church Oxford in Oxford, MS.`} />
+        <meta property="og:url" content={`https://communityoxford.com/ministry/${ministry.slug || ''}`} />
       </Helmet>
 
       {/* Hero image */}

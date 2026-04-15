@@ -54,6 +54,11 @@ export default function About() {
     <>
       <Helmet>
         <title>{t('nav.mission')} — Community Church Oxford</title>
+        <meta name="description" content="Discover the mission, vision, and core values of Community Church Oxford — Seek, Shape, Send. Serving Oxford, MS and beyond." />
+        <link rel="canonical" href="https://communityoxford.com/about" />
+        <meta property="og:title" content={`${t('nav.mission')} — Community Church Oxford`} />
+        <meta property="og:description" content="Discover the mission, vision, and core values of Community Church Oxford — Seek, Shape, Send." />
+        <meta property="og:url" content="https://communityoxford.com/about" />
       </Helmet>
 
       {/* ── MISSION ── */}

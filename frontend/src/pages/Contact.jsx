@@ -31,6 +31,11 @@ export default function Contact() {
     <>
       <Helmet>
         <title>{t('contact.title')} — Community Church Oxford</title>
+        <meta name="description" content="Contact Community Church Oxford at 68 Highway 334, Oxford, MS 38655. Reach us by phone, email, or visit during service times." />
+        <link rel="canonical" href="https://communityoxford.com/contact" />
+        <meta property="og:title" content={`${t('contact.title')} — Community Church Oxford`} />
+        <meta property="og:description" content="Contact Community Church Oxford in Oxford, MS. Phone, email, directions, and service times." />
+        <meta property="og:url" content="https://communityoxford.com/contact" />
       </Helmet>
 
       <PageHero title={heroConfig?.heroTitle || t('contact.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
@@ -39,7 +44,7 @@ export default function Contact() {
       <section className="bg-brand-dark py-16 text-center text-white">
         <div className="mx-auto max-w-3xl px-4">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">Community Oxford</p>
-          <h1 className="font-serif text-4xl font-bold md:text-5xl">{t('contact.title')}</h1>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">{t('contact.title')}</h2>
           <p className="mt-4 text-lg leading-relaxed text-gray-300">{t('contact.subtitle', { defaultValue: 'We\'d love to hear from you. Reach out with any questions or just to say hello.' })}</p>
         </div>
       </section>

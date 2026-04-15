@@ -22,6 +22,48 @@ export default function Home() {
     <>
       <Helmet>
         <title>Community Church Oxford — Seek, Shape, Send</title>
+        <meta name="description" content="Community Church Oxford in Oxford, MS — a Christ-centered church helping you Seek God, be Shaped by Him, and be Sent to serve. Join us for Sunday worship and community." />
+        <link rel="canonical" href="https://communityoxford.com/" />
+        <meta property="og:title" content="Community Church Oxford — Seek, Shape, Send" />
+        <meta property="og:description" content="A Christ-centered church in Oxford, MS helping you Seek God, be Shaped by Him, and be Sent to serve." />
+        <meta property="og:url" content="https://communityoxford.com/" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Church",
+          "name": "Community Church Oxford",
+          "alternateName": "CCO",
+          "url": "https://communityoxford.com",
+          "logo": "https://communityoxford.com/SEEKSHAPESEND.png",
+          "image": "https://communityoxford.com/SEEKSHAPESEND.png",
+          "description": "A Christ-centered church in Oxford, MS — Seek God, be Shaped by Him, and be Sent to serve.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "68 Highway 334",
+            "addressLocality": "Oxford",
+            "addressRegion": "MS",
+            "postalCode": "38655",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 34.3668,
+            "longitude": -89.5186
+          },
+          "telephone": "+1-662-380-5014",
+          "email": "info@communityoxford.com",
+          "sameAs": [
+            "https://www.facebook.com/communityoxford",
+            "https://www.instagram.com/communityoxford"
+          ],
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "09:00",
+              "closes": "12:00"
+            }
+          ]
+        })}</script>
       </Helmet>
 
       <Hero />

@@ -21,6 +21,11 @@ export default function Blog() {
     <>
       <Helmet>
         <title>{t('blog.title')} — Community Church Oxford</title>
+        <meta name="description" content="Read the latest blog posts and updates from Community Church Oxford in Oxford, MS." />
+        <link rel="canonical" href="https://communityoxford.com/blog" />
+        <meta property="og:title" content={`${t('blog.title')} — Community Church Oxford`} />
+        <meta property="og:description" content="Latest blog posts and updates from Community Church Oxford in Oxford, MS." />
+        <meta property="og:url" content="https://communityoxford.com/blog" />
       </Helmet>
 
       <PageHero title={heroConfig?.heroTitle || t('blog.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />

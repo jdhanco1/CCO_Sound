@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const footerLinks = [
   { to: '/about', key: 'nav.mission' },
@@ -16,6 +16,7 @@ const footerLinks = [
 const socials = [
   { href: 'https://www.facebook.com/communityoxford', icon: FaFacebookF, label: 'Facebook' },
   { href: 'https://twitter.com/CommunityOxford', icon: FaTwitter, label: 'Twitter' },
+  { href: 'https://www.youtube.com/@communitychurchoxford68', icon: FaYoutube, label: 'YouTube' },
   { href: '#', icon: FaInstagram, label: 'Instagram' },
 ];
 

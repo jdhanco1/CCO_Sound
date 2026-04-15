@@ -62,6 +62,11 @@ export default function Connect() {
     <>
       <Helmet>
         <title>{t('connect.title')} — Community Church Oxford</title>
+        <meta name="description" content="Get involved at Community Church Oxford in Oxford, MS. Explore ministries, small groups, and volunteer opportunities." />
+        <link rel="canonical" href="https://communityoxford.com/connect" />
+        <meta property="og:title" content={`${t('connect.title')} — Community Church Oxford`} />
+        <meta property="og:description" content="Explore ministries, small groups, and volunteer opportunities at Community Church Oxford." />
+        <meta property="og:url" content="https://communityoxford.com/connect" />
       </Helmet>
 
       {heroImage && (
@@ -76,7 +81,7 @@ export default function Connect() {
       <section className="bg-brand-dark py-16 text-center text-white">
         <div className="mx-auto max-w-3xl px-4">
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">Community Oxford</p>
-          <h1 className="font-serif text-4xl font-bold md:text-5xl">{t('connect.title')}</h1>
+          <h2 className="font-serif text-4xl font-bold md:text-5xl">{t('connect.title')}</h2>
           <p className="mt-4 text-lg leading-relaxed text-gray-300">{t('connect.intro')}</p>
 
           {!showForm && !submitted && (

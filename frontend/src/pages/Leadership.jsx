@@ -22,6 +22,11 @@ export default function Leadership() {
     <>
       <Helmet>
         <title>Leadership — Community Church Oxford</title>
+        <meta name="description" content="Meet the pastors, staff, and elders who lead Community Church Oxford in Oxford, MS." />
+        <link rel="canonical" href="https://communityoxford.com/leadership" />
+        <meta property="og:title" content="Leadership — Community Church Oxford" />
+        <meta property="og:description" content="Meet the pastors, staff, and elders who lead Community Church Oxford in Oxford, MS." />
+        <meta property="og:url" content="https://communityoxford.com/leadership" />
       </Helmet>
 
       {heroImage && <PageHero title={heroConfig?.heroTitle} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />}
