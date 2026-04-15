@@ -25,7 +25,7 @@ export default function Navbar() {
     'transition-colors duration-200 hover:text-brand text-sm tracking-wide uppercase';
 
   return (
-    <header className="sticky top-0 z-50 bg-black/80 backdrop-blur-xl shadow-sm">
+    <header className="sticky top-0 z-50 bg-black backdrop-blur-xl shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo / Church name */}
         <Link to="/" className="flex items-center gap-3">
