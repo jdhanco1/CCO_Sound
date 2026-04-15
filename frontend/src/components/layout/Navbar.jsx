@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { HiMenu, HiX } from 'react-icons/hi';
@@ -19,13 +19,23 @@ const links = [
 export default function Navbar() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const activeClass = 'text-brand font-semibold';
   const baseClass =
     'transition-colors duration-200 hover:text-brand text-sm tracking-wide uppercase';
 
   return (
-    <header className="sticky top-0 z-50 bg-black backdrop-blur-xl shadow-sm">
+    <header className={`sticky top-0 z-50 transition-colors duration-300 shadow-sm ${
+      scrolled ? 'bg-black' : 'bg-black/60 backdrop-blur-xl'
+    }`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo / Church name */}
         <Link to="/" className="flex items-center gap-3">

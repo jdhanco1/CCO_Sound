@@ -116,7 +116,7 @@ export default function Contact() {
             </div>
 
             {/* Contact form */}
-            <div className="rounded-2xl bg-gray-800 p-8 shadow-lg">
+            <div className="rounded-2xl bg-[#2b2b2b] p-8 shadow-lg">
               <h3 className="mb-6 font-serif text-2xl font-bold text-white">
                 {t('contact.action_request')}
               </h3>
