@@ -7,7 +7,7 @@ const footerLinks = [
   { to: '/missions', key: 'nav.missions' },
   { to: '/leadership', key: 'nav.leadership' },
   { to: '/connect', key: 'nav.connect' },
-  { to: '/sermons', key: 'nav.sermons' },
+//{ to: '/sermons', key: 'nav.sermons' },
   { to: '/events', key: 'nav.events' },
   { to: '/contact', key: 'nav.contact' },
   { to: '/store', key: 'nav.store' },
