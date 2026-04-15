@@ -63,17 +63,6 @@ export default function Leadership() {
           )}
         </div>
       </section>
-
-      <section className="py-16 text-center">
-        <p className="font-serif text-2xl font-bold text-brand-dark">
-          Want to get involved with us at Community Oxford?
-        </p>
-        <div className="mt-6">
-          <Button to="/connect" variant="primary" size="lg">
-            Get Connected
-          </Button>
-        </div>
-      </section>
     </>
   );
 }
