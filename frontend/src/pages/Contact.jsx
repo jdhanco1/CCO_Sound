@@ -38,7 +38,7 @@ export default function Contact() {
         <meta property="og:url" content="https://communityoxford.com/contact" />
       </Helmet>
 
-      <PageHero title={heroConfig?.heroTitle || t('contact.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />
+      {heroImage && <PageHero title={heroConfig?.heroTitle || t('contact.title')} subtitle={heroConfig?.heroSubtitle} backgroundImage={heroImage} />}
 
       {/* Intro banner */}
       <section className="bg-brand-dark py-16 text-center text-white">
