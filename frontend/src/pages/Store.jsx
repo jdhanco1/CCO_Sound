@@ -66,7 +66,7 @@ export default function Store() {
         <section className="bg-gray-50 py-16">
           <div className="mx-auto max-w-6xl px-4">
             <SectionHeader
-              eyebrow={t('store.featured_eyebrow')}
+              //eyebrow={t('store.featured_eyebrow')}
               title={t('store.featured_heading')}
             />
             <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
