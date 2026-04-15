@@ -34,7 +34,7 @@ export default function Navbar() {
 
   return (
     <header className={`sticky top-0 z-50 transition-colors duration-300 shadow-sm ${
-      scrolled ? 'bg-black' : 'bg-black/60 backdrop-blur-xl'
+      scrolled ? 'bg-black/60 backdrop-blur-xl' : 'bg-black'
     }`}>
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8">
         {/* Logo / Church name */}
